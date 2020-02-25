@@ -17,12 +17,60 @@ const navigationConfig = [
 		url: '/dashboard'
 	},
 	{
-		id: 'cases',
-		title: 'Cases',
-		translate: 'CASES',
+		id: 'contractors',
+		title: 'Contractors',
+		translate: 'CONTRACTORS',
 		type: 'item',
-		icon: 'list_alt',
-		url: '/cases'
+		icon: 'perm_contact_calendar',
+		url: '/contractors'
+	},
+	{
+		id: 'users',
+		title: 'Users',
+		translate: 'USERS',
+		type: 'item',
+		icon: 'person_outline',
+		url: '/users'
+	},
+	{
+		id: 'admins',
+		title: 'Admins',
+		translate: 'ADMINS',
+		type: 'item',
+		icon: 'person_pin',
+		url: '/admins'
+	},
+	{
+		id: 'applications',
+		title: 'Applications',
+		translate: 'APPLICATION',
+		type: 'item',
+		icon: 'touch_app',
+		url: '/applications'
+	},
+	{
+		id: 'feedbacks',
+		title: 'Feedback',
+		translate: 'FEEDBACKS',
+		type: 'item',
+		icon: 'feedback',
+		url: '/feedbacks'
+	},
+	{
+		id: 'testCases',
+		title: 'Test Cases',
+		translate: 'TEST CASES',
+		type: 'item',
+		icon: 'cast_for_education',
+		url: '/testcases'
+	},
+	{
+		id: 'settings',
+		title: 'Settings',
+		translate: 'SETTINGS',
+		type: 'item',
+		icon: 'settings',
+		url: '/settings'
 	}
 ];
 

@@ -54,17 +54,8 @@ function UserNavbarHeader(props) {
 				{user.data.displayName}
 			</Typography>
 			<Typography className="email text-13 mt-8 opacity-50 whitespace-no-wrap" color="inherit">
-				{user.data.email}
+				user status
 			</Typography>
-			<Avatar
-				className={clsx(classes.avatar, 'avatar')}
-				alt="user photo"
-				src={
-					user.data.photoURL && user.data.photoURL !== ''
-						? user.data.photoURL
-						: ''
-				}
-			/>
 		</AppBar>
 	);
 }
