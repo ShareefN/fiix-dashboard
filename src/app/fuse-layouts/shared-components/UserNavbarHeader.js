@@ -48,7 +48,7 @@ function UserNavbarHeader(props) {
 			color="primary"
 			elevation={0}
 			classes={{ root: classes.root }}
-			className="user relative flex flex-col items-center justify-center pt-24 pb-76 mb-32 z-0"
+			className="user relative flex flex-col items-center justify-center pt-24 pb-24 mb-32 z-0"
 		>
 			<Typography className="username text-16 whitespace-no-wrap" color="inherit">
 				{user.data.displayName}

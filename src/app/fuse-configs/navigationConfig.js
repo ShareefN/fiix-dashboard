@@ -49,6 +49,14 @@ const navigationConfig = [
 		url: '/applications'
 	},
 	{
+		id: 'reviews',
+		title: 'Reviews',
+		translate: 'REVIEWS',
+		type: 'item',
+		icon: 'rate_review',
+		url: '/reviews'
+	},
+	{
 		id: 'feedbacks',
 		title: 'Feedback',
 		translate: 'FEEDBACKS',
