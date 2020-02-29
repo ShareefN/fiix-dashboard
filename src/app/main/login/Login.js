@@ -38,8 +38,6 @@ function LoginPage() {
 				<FuseAnimate animation="transition.expandIn">
 					<Card className="w-full max-w-384">
 						<CardContent className="flex flex-col items-center justify-center p-32">
-							<img className="w-128 m-32" src="assets/images/logos/fuse.svg" alt="logo" />
-
 							<Typography variant="h6" className="mt-16 mb-32">
 								LOGIN TO YOUR ACCOUNT
 							</Typography>

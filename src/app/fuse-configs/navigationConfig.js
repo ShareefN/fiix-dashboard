@@ -62,7 +62,7 @@ const navigationConfig = [
 		translate: 'FEEDBACKS',
 		type: 'item',
 		icon: 'feedback',
-		url: '/feedbacks'
+		url: '/feedback'
 	},
 	{
 		id: 'testCases',

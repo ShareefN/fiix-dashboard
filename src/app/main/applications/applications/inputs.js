@@ -22,7 +22,7 @@ function Inputs(props) {
 			<div className="flex flex-row items-center">
 				<Icon className="list-item-icon text-44">assignment</Icon>
 				<Typography className="py-5 sm:py-24 ml-8" variant="h4">
-					Contractors
+					Applications
 				</Typography>
 			</div>
 			<Formsy onValidSubmit={submit} ref={formRef} onReset={resetForm} className="justify-center w-full">
@@ -34,7 +34,7 @@ function Inputs(props) {
 								type="text"
 								name="id"
 								value={''}
-								label="Contractor ID"
+								label="Application ID"
 								variant="outlined"
 								InputProps={{
 									endAdornment: (
@@ -85,23 +85,6 @@ function Inputs(props) {
 								<MenuItem vlaue="shareef">Mechanic</MenuItem>
 								<MenuItem value="zaid">Dry Clean</MenuItem>
 								<MenuItem value="khaled">Legal Consultant</MenuItem>
-							</SelectFormsy>
-						</Grid>
-						<Grid item xl={3} lg={3} md={3} sm={3}>
-							<SelectFormsy
-								className={'my-10 mx-10 w-full'}
-								type="text"
-								name="status"
-								value={''}
-								label="Status"
-								variant="outlined"
-							>
-								<MenuItem value="" className="text-red-400">
-									Clear Field
-								</MenuItem>
-								<MenuItem vlaue="shareef">Active</MenuItem>
-								<MenuItem value="zaid">Deactivated</MenuItem>
-								<MenuItem value="khaled">Prohibited</MenuItem>
 							</SelectFormsy>
 						</Grid>
 					</Grid>
