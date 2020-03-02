@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import OpenInNew from '@material-ui/icons/OpenInNew';
 import Tooltip from '@material-ui/core/Tooltip';
 import TablePagination from '@material-ui/core/TablePagination';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 function DataTable(props) {
@@ -23,13 +24,16 @@ function DataTable(props) {
 		setPage(newPage);
 	};
 
+const openContractor = id => {
+	props.history.push(`/contractors/${id}/contractordetails`);
+}
+	
 	return (
 		<div className="flex w-full items-center pb-56">
 			<TableContainer>
 				<Table aria-label="simple table">
 					<TableHead className="bg-grey-300 w-full">
 						<TableRow>
-							<TableCell></TableCell>
 							<TableCell align="center">Id</TableCell>
 							<TableCell align="center">Contractor</TableCell>
 							<TableCell align="center">Category</TableCell>
@@ -40,12 +44,7 @@ function DataTable(props) {
 						</TableRow>
 					</TableHead>
 					<TableBody className="cursor-pointer">
-							<TableRow key={Math.random()} hover className="px-24">
-								<TableCell className="w-48 pl-4 sm:pl-12">
-									<Tooltip title="Open new tab">
-										<OpenInNew />
-									</Tooltip>
-								</TableCell>
+							<TableRow onClick={() => openContractor(Math.random())} hover className="px-24">
                 <TableCell component="th" scope="row" align="center">
 									8
 								</TableCell>
@@ -78,4 +77,4 @@ function DataTable(props) {
 	);
 }
 
-export default DataTable;
+export default withRouter(DataTable);
