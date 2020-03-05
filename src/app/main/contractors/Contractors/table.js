@@ -39,7 +39,6 @@ const openContractor = id => {
 							<TableCell align="center">Category</TableCell>
 							<TableCell align="center">Contact</TableCell>
 							<TableCell align="center">Status</TableCell>
-							<TableCell align="center">Notes</TableCell>
 							<TableCell align="center">Updated At</TableCell>
 						</TableRow>
 					</TableHead>
@@ -56,7 +55,6 @@ const openContractor = id => {
 								</TableCell>
 								<TableCell align="center">0798829834</TableCell>
 								<TableCell align="center">Active</TableCell>
-								<TableCell align="center">--</TableCell>
 								<TableCell align="center">
 									18-2-2020 - 18:22
 								</TableCell>

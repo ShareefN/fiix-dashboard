@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography, Icon } from '@material-ui/core';
+import EditContractor from './Dialogs/editContractor';
 
 function ContractorDetails(props){
   return(
@@ -10,15 +11,15 @@ function ContractorDetails(props){
           <AppBar position="static" elevation={0}>
             <Toolbar className="pl-16 pr-8">
               <div className="flex items-center w-full">
-                <div className="flex items-center">
+                <div className="flex w-full">
                   <Typography variant="subtitle1" color="inherit" className="flex-1">
                     Contractor Details
                   </Typography>
                 </div>
+                <div className="flex w-full justify-end pr-24">
+										<EditContractor />
+									</div>
               </div>
-              <div className="flex w-full justify-end pr-24">
-              <Icon className="cursor-pointer">edit</Icon>
-            </div>
             </Toolbar>
           </AppBar>
           <CardContent className="flex flex-row pb-0">
