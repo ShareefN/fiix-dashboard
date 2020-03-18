@@ -9,6 +9,7 @@ import OpenInNew from '@material-ui/icons/OpenInNew';
 import Tooltip from '@material-ui/core/Tooltip';
 import TablePagination from '@material-ui/core/TablePagination';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 
 function DataTable(props) {
 	const [rowsPerPage, setRowsPerPage] = React.useState(50);
@@ -21,6 +22,10 @@ function DataTable(props) {
 
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
+	};
+
+	const openAdmin = id => {
+		props.history.push(`/admins/${id}/admindetails`);
 	};
 
 	return (
@@ -37,7 +42,7 @@ function DataTable(props) {
 						</TableRow>
 					</TableHead>
 					<TableBody className="cursor-pointer">
-						<TableRow key={Math.random()} hover className="px-24">
+						<TableRow key={Math.random()} hover className="px-24" onClick={() => openAdmin(Math.random())}>
 							<TableCell className="w-48 pl-4 sm:pl-12">
 								<Tooltip title="Open new tab">
 									<OpenInNew />
@@ -49,7 +54,7 @@ function DataTable(props) {
 							<TableCell component="th" scope="row" align="center">
 								Sara Hamood
 							</TableCell>
-              <TableCell component="th" scope="row" align="center">
+							<TableCell component="th" scope="row" align="center">
 								Active
 							</TableCell>
 							<TableCell align="center">18-2-2020 - 18:22</TableCell>
@@ -70,4 +75,4 @@ function DataTable(props) {
 	);
 }
 
-export default DataTable;
+export default withRouter(DataTable);

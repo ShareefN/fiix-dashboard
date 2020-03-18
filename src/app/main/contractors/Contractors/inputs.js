@@ -82,7 +82,7 @@ function Inputs(props) {
 								<MenuItem value="" className="text-red-400">
 									Clear Field
 								</MenuItem>
-								<MenuItem vlaue="shareef">Mechanic</MenuItem>
+								<MenuItem value="shareef">Mechanic</MenuItem>
 								<MenuItem value="zaid">Dry Clean</MenuItem>
 								<MenuItem value="khaled">Legal Consultant</MenuItem>
 							</SelectFormsy>

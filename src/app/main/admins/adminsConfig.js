@@ -15,6 +15,11 @@ const AdminsConfig = {
 					path: '/admins',
 					exact: true,
 					component: React.lazy(() => import('./admins/Admins'))
+				},
+				{
+					path: '/admins/:adminId/adminDetails',
+					exact: true,
+					component: React.lazy(() => import('./admin/index.js'))
 				}
 			]
 		}

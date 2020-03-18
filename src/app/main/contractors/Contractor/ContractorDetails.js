@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography, Icon } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
 import EditContractor from './Dialogs/editContractor';
 
 function ContractorDetails(props){

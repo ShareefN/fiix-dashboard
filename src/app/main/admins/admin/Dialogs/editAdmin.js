@@ -7,12 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Icon } from '@material-ui/core';
 
-function EditContractor(props) {
+function EditAdmin(props) {
 	const [dialog, setDialog] = useState(null);
 
 	const submit = model => {
-    console.log(model);
-    setDialog(false)
+		console.log(model);
+		setDialog(false);
 	};
 
 	const handleClose = () => {
@@ -30,14 +30,14 @@ function EditContractor(props) {
 					aria-describedby="scroll-dialog-description"
 				>
 					<div className="flex flex-row justify-between">
-						<DialogTitle id="scroll-dialog-title">Edit Contractor</DialogTitle>
+						<DialogTitle id="scroll-dialog-title">Edit Admin</DialogTitle>
 						<Icon className="mr-24 mt-20 cursor-pointer" onClick={() => handleClose()}>
 							close
 						</Icon>
 					</div>
 					<DialogContent>
 						<Formsy onValidSubmit={submit} className="justify-center justify-between w-full">
-            <TextFieldFormsy
+							<TextFieldFormsy
 								className={' my-10 mx-10 w-full'}
 								type="text"
 								name="prohibitedReason"
@@ -47,7 +47,7 @@ function EditContractor(props) {
 							/>
 							<div className="text-center pt-24 pb-24">
 								<Button variant="contained" color="primary" type="submit">
-									Deactivate Contractor
+									Deactivate Admin
 								</Button>
 							</div>
 						</Formsy>
@@ -55,9 +55,9 @@ function EditContractor(props) {
 				</Dialog>
 			</>
 		);
-	};
+  };
 
-	return (
+  return (
 		<React.Fragment>
 			<Icon className="cursor-pointer" onClick={() => setDialog(true)}>
 				edit
@@ -67,4 +67,4 @@ function EditContractor(props) {
 	);
 }
 
-export default EditContractor;
+export default EditAdmin;

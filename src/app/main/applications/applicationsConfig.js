@@ -15,7 +15,12 @@ const ApplicationsConfig = {
 					path: '/applications',
 					exact: true,
 					component: React.lazy(() => import('./applications/Applications'))
-				}
+				},
+			{
+				path: '/applications/:applicationId/application',
+				exact: true,
+				component: React.lazy(() => import('./application/index'))
+			}
 			]
 		}
 	]

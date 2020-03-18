@@ -9,6 +9,7 @@ import OpenInNew from '@material-ui/icons/OpenInNew';
 import Tooltip from '@material-ui/core/Tooltip';
 import TablePagination from '@material-ui/core/TablePagination';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 
 function DataTable(props) {
 	const [rowsPerPage, setRowsPerPage] = React.useState(50);
@@ -23,6 +24,10 @@ function DataTable(props) {
 		setPage(newPage);
 	};
 
+	const openApplication = id => {
+		props.history.push(`/applications/${id}/application`);
+	};
+
 	return (
 		<div className="flex w-full items-center pb-56">
 			<TableContainer>
@@ -31,14 +36,19 @@ function DataTable(props) {
 						<TableRow>
 							<TableCell></TableCell>
 							<TableCell align="center">Id</TableCell>
-							<TableCell align="center">Applicant</TableCell>
+							<TableCell align="center">Applicant Name</TableCell>
 							<TableCell align="center">Category</TableCell>
-							<TableCell align="center">Contact</TableCell>
+							<TableCell align="center">Number</TableCell>
 							<TableCell align="center">Applied At</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody className="cursor-pointer">
-						<TableRow key={Math.random()} hover className="px-24">
+						<TableRow
+							key={Math.random()}
+							hover
+							className="px-24"
+							onClick={() => openApplication(Math.random())}
+						>
 							<TableCell className="w-48 pl-4 sm:pl-12">
 								<Tooltip title="Open new tab">
 									<OpenInNew />
@@ -72,4 +82,4 @@ function DataTable(props) {
 	);
 }
 
-export default DataTable;
+export default withRouter(DataTable);
