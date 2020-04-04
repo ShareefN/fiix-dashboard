@@ -4,7 +4,7 @@ import FuseUtils from '@fuse/utils';
 import login from 'app/main/login/LoginConfig';
 import contractors from 'app/main/contractors/contractorsConfig';
 import users from 'app/main/users/usersConfig';
-import { DashboardConfig } from 'app/main/dashboard/DashboardConfig';
+import DashboardConfig from 'app/main/dashboard/DashboardConfig';
 import admins from 'app/main/admins/adminsConfig';
 import applications from 'app/main/applications/applicationsConfig';
 import reviews from 'app/main/reviews/reviewsConfig';

@@ -9,7 +9,7 @@ import * as authActions from 'app/auth/store/actions';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function UserMenu(props) {
 	const dispatch = useDispatch();
@@ -21,17 +21,22 @@ function UserMenu(props) {
 		setUserMenu(event.currentTarget);
 	};
 
+	const onLogout = () => {
+		localStorage.removeItem('FIIX_ADMIN_TOKEN');
+		props.history.push('/login');
+	};
+
 	const userMenuClose = () => {
 		setUserMenu(null);
 	};
 
 	return (
 		<>
-			<Typography className="mr-24 text-20 cursor-pointer" onClick={() => (window.location.href = '/login')}>
+			<Typography className="mr-24 text-20 cursor-pointer" onClick={() => onLogout()}>
 				Logout
 			</Typography>
 		</>
 	);
 }
 
-export default UserMenu;
+export default withRouter(UserMenu);

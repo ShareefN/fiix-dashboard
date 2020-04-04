@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Formsy from 'formsy-react';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import * as authActions from 'app/auth/store/actions';
+import { login } from 'app/api/api';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -19,18 +19,35 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function LoginPage() {
-	const dispatch = useDispatch();
+function LoginPage(props) {
 	const classes = useStyles();
 	const [isFormValid, setIsFormValid] = useState(false);
+	const [remember, setRemember] = useState(false);
 	const formRef = useRef(null);
-	const onSubmit = data => dispatch(authActions.submitLogin(data));
+
+	const onSubmit = async data => {
+		const result = {
+			email: data.email,
+			password: data.password
+		};
+		return login(result)
+			.then(res => {
+				localStorage.setItem('FIIX_ADMIN_TOKEN', res.data.token);
+				props.history.push('/dashboard');
+			})
+			.catch(err => console.log('this is the error ', err));
+	};
+
 	function disableButton() {
 		setIsFormValid(false);
 	}
 
 	function enableButton() {
 		setIsFormValid(true);
+	}
+
+	function rememberMe() {
+		setRemember(!remember);
 	}
 	return (
 		<div className={clsx(classes.root, 'flex flex-col flex-auto flex-shrink-0 items-center justify-center p-32')}>
@@ -74,7 +91,6 @@ function LoginPage() {
 									required
 									fullWidth
 								/>
-
 								<Button
 									variant="contained"
 									color="primary"
@@ -94,4 +110,4 @@ function LoginPage() {
 	);
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

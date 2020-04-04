@@ -1,19 +1,26 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export const DashboardConfig = {
-	settings: {
-		layout: {
-			config: {
-				footer: {
-					display: false
-				}
+let DashboardConfig;
+
+if (localStorage.getItem('FIIX_ADMIN_TOKEN')) {
+	DashboardConfig = {
+		routes: [
+			{
+				path: '/dashboard',
+				component: React.lazy(() => import('./Dashboard'))
 			}
-		}
-	},
-	routes: [
-		{
-			path: '/dashboard',
-			component: React.lazy(() => import('./Dashboard'))
-		}
-	]
-};
+		]
+	};
+} else {
+	DashboardConfig = {
+		routes: [
+			{
+				path: '/dashboard',
+				component: React.lazy(() => import('./Dashboard'))
+			}
+		]
+	};
+}
+
+export default withRouter(DashboardConfig);

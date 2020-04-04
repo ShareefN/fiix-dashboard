@@ -1,5 +1,6 @@
 import React from 'react';
 import { authRoles } from "app/auth";
+
 const LoginConfig = {
 	settings: {
 		layout: {
