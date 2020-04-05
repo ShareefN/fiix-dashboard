@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
-const API1_URL = process.env.REACT_APP_FIIX_API_URL;
-
 const onAuthorizationListeners = [];
 
 export const setAuthorization = token => {
@@ -16,16 +13,18 @@ var Axios = null;
 
 const initAxios = () => {
 	const token = localStorage.getItem('FIIX_ADMIN_TOKEN');
-	try {
+
+	if (token) {
 		Axios = axios.create({
-			baseURL: 'https://fiix-app.herokuapp.com',
-			header: {
-				'x-auth-token': token
+			baseURL: process.env.REACT_APP_FIIX_API_URL,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: token
 			}
 		});
-	} catch {
+	} else {
 		Axios = axios.create({
-			baseURL: 'https://fiix-app.herokuapp.com'
+			baseURL: process.env.REACT_APP_FIIX_API_URL
 		});
 	}
 };
@@ -38,4 +37,8 @@ export const retrieveLocalToken = () => {
 
 export const login = result => {
 	return Axios.post('/admins/auth/login', result);
+};
+
+export const getStats = () => {
+	return Axios.post('/statistics/stats');
 };

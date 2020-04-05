@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Formsy from 'formsy-react';
 import clsx from 'clsx';
 import React, { useRef, useState } from 'react';
-import { login } from 'app/api/api';
+import { login, retrieveLocalToken } from 'app/api/api';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -31,8 +31,9 @@ function LoginPage(props) {
 			password: data.password
 		};
 		return login(result)
-			.then(res => {
+			.then(async res => {
 				localStorage.setItem('FIIX_ADMIN_TOKEN', res.data.token);
+				await retrieveLocalToken();
 				props.history.push('/dashboard');
 			})
 			.catch(err => console.log('this is the error ', err));

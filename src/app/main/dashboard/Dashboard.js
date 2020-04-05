@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Icon } from '@material-ui/core';
 import Widget2 from './widgets/Widget2';
 import { FuseAnimateGroup } from '@fuse/core/FuseAnimateGroup/FuseAnimateGroup';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Actions from './store/actions/index';
 
 const getData = (count, title, color, state, click) => {
 	return {
@@ -29,6 +31,12 @@ const getAttribute = (count, name, color, state, click) => {
 };
 
 function Dashboard(props) {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(Actions.fetchStats());
+	}, []);
+
 	const click = state => {
 		alert(state);
 	};
