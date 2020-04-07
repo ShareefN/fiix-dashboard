@@ -165,7 +165,7 @@ export function logoutUser() {
 		}
 
 		history.push({
-			pathname: '/'
+			pathname: '/login'
 		});
 
 		switch (user.from) {
@@ -194,7 +194,6 @@ export function logoutUser() {
  * Update User Data
  */
 function updateUserData(user, dispatch) {
-	console.log(user)
 	if (!user.role || user.role.length === 0) {
 		// is guest
 		return;

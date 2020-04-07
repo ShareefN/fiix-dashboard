@@ -8,34 +8,32 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export function submitLogin({ email, password }) {
 	return dispatch => {
-		var c = {
-			role: ["admin"], //guest
-			data: {
-				displayName:  'user',
-				photoURL: 'assets/images/avatars/profile.jpg',
-				email: "user.email",
-				shortcuts: ['calendar', 'mail', 'contacts', 'todo']
-			}
-		};
-		dispatch(UserActions.setUserData(c));
-		// jwtService
-		// 	.signInWithEmailAndPassword(email, password)
-		// 	.then(user => {
-		// 		dispatch(UserActions.setUserData(user));
-
-		// 		return dispatch({
-		// 			type: LOGIN_SUCCESS
-		// 		});
-		// 	})
-		// 	.catch(error => {
-		// 		return dispatch({
-		// 			type: LOGIN_ERROR,
-		// 			payload: error
-		// 		});
-		// 	});
-		return dispatch({
-			type: LOGIN_SUCCESS
-		});
+		// dispatch(UserActions.setUserData(c));
+		jwtService
+			.signInWithEmailAndPassword(email, password)
+			.then(user => {
+				var c = {
+					role: user.admin.role, //guest
+					data: {
+						displayName: user.admin.name,
+						email: user.admin.email,
+						id: user.admin.id
+					}
+				};
+				dispatch(UserActions.setUserData(c));
+				return dispatch({
+					type: LOGIN_SUCCESS
+				});
+			})
+			.catch(error => {
+				return dispatch({
+					type: LOGIN_ERROR,
+					payload: error
+				});
+			});
+		// return dispatch({
+		// 	type: LOGIN_SUCCESS
+		// });
 	};
 }
 

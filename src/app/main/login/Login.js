@@ -8,9 +8,11 @@ import { darken } from '@material-ui/core/styles/colorManipulator';
 import Typography from '@material-ui/core/Typography';
 import Formsy from 'formsy-react';
 import clsx from 'clsx';
+import * as MessageActions from 'app/store/actions/fuse/message.actions';
 import React, { useRef, useState } from 'react';
-import { login, retrieveLocalToken } from 'app/api/api';
+import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as authActions from 'app/auth/store/actions';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -21,22 +23,13 @@ const useStyles = makeStyles(theme => ({
 
 function LoginPage(props) {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const [isFormValid, setIsFormValid] = useState(false);
 	const [remember, setRemember] = useState(false);
 	const formRef = useRef(null);
 
 	const onSubmit = async data => {
-		const result = {
-			email: data.email,
-			password: data.password
-		};
-		return login(result)
-			.then(async res => {
-				localStorage.setItem('FIIX_ADMIN_TOKEN', res.data.token);
-				await retrieveLocalToken();
-				props.history.push('/dashboard');
-			})
-			.catch(err => console.log('this is the error ', err));
+		dispatch(authActions.submitLogin(data));
 	};
 
 	function disableButton() {

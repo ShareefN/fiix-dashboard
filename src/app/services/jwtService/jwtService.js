@@ -1,7 +1,7 @@
 import FuseUtils from '@fuse/utils/FuseUtils';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { setAuthorization } from "../../api/api";
+import { setAuthorization, login } from 'app/api/api';
 /* eslint-disable camelcase */
 
 class JwtService extends FuseUtils.EventEmitter {
@@ -38,7 +38,7 @@ class JwtService extends FuseUtils.EventEmitter {
 		}
 
 		if (this.isAuthTokenValid(access_token)) {
-			setAuthorization(access_token)
+			setAuthorization(access_token);
 			this.setSession(access_token);
 			this.emit('onAutoLogin', true);
 		} else {
@@ -62,47 +62,35 @@ class JwtService extends FuseUtils.EventEmitter {
 
 	signInWithEmailAndPassword = (email, password) => {
 		return new Promise((resolve, reject) => {
-			axios
-				.get('/api/auth', {
-					data: {
-						email,
-						password
-					}
-				})
+			login({ email: email, password: password })
 				.then(response => {
-					if (response.data.user) {
-						// setAuthorization(response.body.token);
-						this.setSession(response.data.access_token);
-						resolve(response.data.user);
-					} else {
-						reject(response.data.error);
-					}
-				});
+					setAuthorization(response.body.token);
+					this.setSession(response.body.token);
+					resolve(jwtDecode(response.body.token));
+				})
+				.catch(error => reject(error));
 		});
 	};
 
 	signInWithToken = () => {
-		return new Promise((resolve, reject) => {
-			axios
-				.get('/api/auth/access-token', {
+		try {
+			const access_token = this.getAccessToken();
+			let decodedToken = jwtDecode(access_token);
+			return new Promise((resolve, reject) => {
+				let c = {
+					role: decodedToken.admin.role,
 					data: {
-						access_token: this.getAccessToken()
+						displayName: decodedToken.admin.name,
+						email: decodedToken.admin.email,
+						id: decodedToken.admin.id
 					}
-				})
-				.then(response => {
-					if (response.data.user) {
-						this.setSession(response.data.access_token);
-						resolve(response.data.user);
-					} else {
-						this.logout();
-						Promise.reject(new Error('Failed to login with token.'));
-					}
-				})
-				.catch(error => {
-					this.logout();
-					Promise.reject(new Error('Failed to login with token.'));
-				});
-		});
+				};
+				resolve(c);
+			});
+		} catch (error) {
+			console.log(error);
+			this.logout();
+		}
 	};
 
 	updateUserData = user => {
@@ -129,18 +117,18 @@ class JwtService extends FuseUtils.EventEmitter {
 		if (!access_token) {
 			return false;
 		}
-		try{
-		const decoded = jwtDecode(access_token);
-		
-		const currentTime = Date.now() / 1000;
-		if (decoded.exp < currentTime) {
-			console.warn('access token expired');
-			return false;
-		}
+		try {
+			const decoded = jwtDecode(access_token);
 
-		return true;
-	}catch(error){
-			console.log(error)
+			const currentTime = Date.now() / 1000;
+			if (decoded.exp < currentTime) {
+				console.warn('access token expired');
+				return false;
+			}
+
+			return true;
+		} catch (error) {
+			console.log(error);
 		}
 	};
 

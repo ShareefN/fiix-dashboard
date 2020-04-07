@@ -1,6 +1,17 @@
 import React from 'react';
+import { authRoles } from 'app/auth';
 
 const DashboardConfig = {
+	settings: {
+		layout: {
+			config: {
+				footer: {
+					display: false
+				}
+			}
+		}
+	},
+	auth: authRoles.admin,
 	routes: [
 		{
 			path: '/dashboard',
@@ -9,4 +20,4 @@ const DashboardConfig = {
 	]
 };
 
-export default DashboardConfig
+export default DashboardConfig;
