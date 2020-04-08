@@ -16,9 +16,10 @@ class Auth extends Component {
 		onMessage(options => {
 			this.props.showMessage({ message: options });
 		});
-		return Promise.all([this.jwtCheck()]).then(() => {
-			this.setState({ waitAuthCheck: false });
-		});
+		return Promise.all([
+			this.jwtCheck()
+		])
+		.then(() => this.setState({waitAuthCheck: false}))
 	}
 
 	jwtCheck = () =>
@@ -35,7 +36,7 @@ class Auth extends Component {
 						this.props.setUserData(user);
 
 						resolve();
-
+						this.setState({waitAuthCheck: false})
 						this.props.showMessage({ message: 'Logged in with JWT' });
 					})
 					.catch(error => {

@@ -5,7 +5,7 @@ const onAuthorizationListeners = [];
 let authorization;
 
 function setAuthorization(token) {
-	authorization = 'Bearer ' + token; //Bearer type
+	authorization = 'Bearer ' + localStorage.getItem('jwt_access_token'); //Bearer type
 	onAuthorizationListeners.forEach(callback => {
 		callback(token);
 	});
@@ -87,7 +87,7 @@ function createRequest({ method }, type) {
 			let response = await callApiUsingFunction({
 				callUrl: `${url}${path}${qs}`,
 				method,
-				headers: Object.assign({ Authorization: authorization }, headers),
+				headers: Object.assign({ Authorization: localStorage.getItem('jwt_access_token') }, headers),
 				json,
 				body
 			});
@@ -125,4 +125,12 @@ function login(values) {
 	return api.v1.post({ path: `/admins/auth/login`, json: values });
 }
 
-export { setAuthorization, login, onMessage };
+function statistics() {
+	return api.v1.post({ path: '/statistics/stats' });
+}
+
+function getAdmins() {
+	return api.v1.get({path: '/admins/admins'})
+}
+
+export { setAuthorization, login, onMessage, statistics, getAdmins };

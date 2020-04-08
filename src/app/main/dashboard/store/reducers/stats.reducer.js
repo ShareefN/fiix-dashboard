@@ -1,7 +1,7 @@
 import * as Actions from '../actions/index';
 
 const initalValues = {
-  statistics = []
+  statistics: []
 }
 
 const Stats = function(state = initalValues, action){

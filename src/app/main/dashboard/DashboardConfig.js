@@ -11,7 +11,7 @@ const DashboardConfig = {
 			}
 		}
 	},
-	auth: authRoles.admin,
+	// auth: authRoles.admin,
 	routes: [
 		{
 			path: '/dashboard',

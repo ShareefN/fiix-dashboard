@@ -54,7 +54,7 @@ function UserNavbarHeader(props) {
 				{user.data.displayName}
 			</Typography>
 			<Typography className="email text-13 mt-8 opacity-50 whitespace-no-wrap" color="inherit">
-				user status
+				{user.role === 'super' ? 'Super Admin' : 'Admin'}
 			</Typography>
 		</AppBar>
 	);

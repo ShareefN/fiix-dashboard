@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Typography, Icon } from '@material-ui/core';
 import Widget2 from './widgets/Widget2';
-import { FuseAnimateGroup } from '@fuse/core/FuseAnimateGroup/FuseAnimateGroup';
+import withReducer from 'app/store/withReducer';
+import { withRouter } from 'react-router-dom';
+import reducer from './store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from './store/actions/index';
 
@@ -32,9 +34,11 @@ const getAttribute = (count, name, color, state) => {
 function Dashboard(props) {
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	dispatch(Actions.fetchStats());
-	// }, []);
+	useEffect(() => {
+		dispatch(Actions.fetchStats());
+	}, []);
+
+	const stats = useSelector(({ dashboardReducer }) => dashboardReducer.Stats.statistics[0]);
 
 	return (
 		<div className="flex flex-col justify-evenly">
@@ -46,15 +50,25 @@ function Dashboard(props) {
 			<div className="p-12">
 				<div className="flex flex-wrap">
 					{[
-						getAttribute('12221', 'Users', 'text-blue-800', 'pendingAssesment'),
-						getAttribute('22213', 'Contractors', 'text-red-800', 'pendingIndication'),
-						getAttribute('53', 'Applications', 'text-purple-800', 'pendingPlan'),
-						getAttribute('90', 'Feedbacks', 'text-green-800', 'pendingStatus'),
-						getAttribute('144', 'Categories', 'text-orange-800', 'pendingStatus'),
-						getAttribute('12', 'Test Cases', 'text-pink-800', 'pendingStatus'),
-						getAttribute('23', 'Admins', 'text-green-900', 'pendingStatus'),
-						getAttribute('23', 'Reviews', 'text-orange-700', 'pendingStatus'),
-						getAttribute('33', 'Prohibited', 'text-red-900', 'pendingStatus')
+						getAttribute(stats ? stats.users : '--', 'Users', 'text-blue-800', 'pendingAssesment'),
+						getAttribute(
+							stats ? stats.contractors : '--',
+							'Contractors',
+							'text-red-800',
+							'pendingIndication'
+						),
+						getAttribute(
+							stats ? stats.applications : '--',
+							'Applications',
+							'text-purple-800',
+							'pendingPlan'
+						),
+						getAttribute(stats ? stats.feedbacks : '--', 'Feedbacks', 'text-green-800', 'pendingStatus'),
+						getAttribute(stats ? stats.categories : '--', 'Categories', 'text-orange-800', 'pendingStatus'),
+						getAttribute(stats ? stats.testCases : '--', 'Test Cases', 'text-pink-800', 'pendingStatus'),
+						getAttribute(stats ? stats.admins : '--', 'Admins', 'text-green-900', 'pendingStatus'),
+						getAttribute(stats ? stats.reviews : '--', 'Reviews', 'text-orange-700', 'pendingStatus'),
+						getAttribute(stats ? stats.prohibited : '--', 'Prohibited', 'text-red-900', 'pendingStatus')
 					]}
 				</div>
 			</div>
@@ -62,4 +76,4 @@ function Dashboard(props) {
 	);
 }
 
-export default Dashboard;
+export default withReducer('dashboardReducer', reducer)(withRouter(Dashboard));
