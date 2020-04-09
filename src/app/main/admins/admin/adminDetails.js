@@ -1,8 +1,12 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography, Icon } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
 import EditAdmin from './Dialogs/editAdmin';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 function AdminDeatials(props) {
+	const admin = useSelector(({ adminReducer }) => adminReducer.Admin.Admin.result);
+
 	return (
 		<React.Fragment>
 			<div className="md:flex max-w-2xl pt-24 pl-24">
@@ -25,34 +29,38 @@ function AdminDeatials(props) {
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Name</Typography>
-								<Typography>--</Typography>
+								<Typography>{admin ? admin.name : '--'}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Email</Typography>
-								<Typography>--</Typography>
+								<Typography>{admin ? admin.email : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Phone</Typography>
-								<Typography>--</Typography>
+								<Typography>{admin ? admin.phone : '--'}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Status</Typography>
-								<Typography>--</Typography>
+								<Typography>{admin ? admin.status : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">Joined At</Typography>
-								<Typography>--</Typography>
+								<Typography className="font-bold mb-4 text-15">Created At</Typography>
+								<Typography>
+									{admin ? moment(admin.createdAt).format('DD/MM/YYYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Updated at</Typography>
-								<Typography>--</Typography>
+								<Typography>
+									{admin ? moment(admin.updatedAt).format('DD/MM/YYYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 						</CardContent>
-            <CardContent className="flex flex-row pb-0">
+						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Notes</Typography>
 								<Typography>--</Typography>

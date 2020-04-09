@@ -50,25 +50,25 @@ function Dashboard(props) {
 			<div className="p-12">
 				<div className="flex flex-wrap">
 					{[
-						getAttribute(stats ? stats.users : '--', 'Users', 'text-blue-800', 'pendingAssesment'),
+						getAttribute(stats ? stats.users : '0', 'Users', 'text-blue-800', 'pendingAssesment'),
 						getAttribute(
-							stats ? stats.contractors : '--',
+							stats ? stats.contractors : '0',
 							'Contractors',
 							'text-red-800',
 							'pendingIndication'
 						),
 						getAttribute(
-							stats ? stats.applications : '--',
+							stats ? stats.applications : '0',
 							'Applications',
 							'text-purple-800',
 							'pendingPlan'
 						),
-						getAttribute(stats ? stats.feedbacks : '--', 'Feedbacks', 'text-green-800', 'pendingStatus'),
-						getAttribute(stats ? stats.categories : '--', 'Categories', 'text-orange-800', 'pendingStatus'),
-						getAttribute(stats ? stats.testCases : '--', 'Test Cases', 'text-pink-800', 'pendingStatus'),
-						getAttribute(stats ? stats.admins : '--', 'Admins', 'text-green-900', 'pendingStatus'),
-						getAttribute(stats ? stats.reviews : '--', 'Reviews', 'text-orange-700', 'pendingStatus'),
-						getAttribute(stats ? stats.prohibited : '--', 'Prohibited', 'text-red-900', 'pendingStatus')
+						getAttribute(stats ? stats.feedbacks : '0', 'Feedbacks', 'text-green-800', 'pendingStatus'),
+						getAttribute(stats ? stats.categories : '0', 'Categories', 'text-orange-800', 'pendingStatus'),
+						getAttribute(stats ? stats.testCases : '0', 'Test Cases', 'text-pink-800', 'pendingStatus'),
+						getAttribute(stats ? stats.admins : '0', 'Admins', 'text-green-900', 'pendingStatus'),
+						getAttribute(stats ? stats.reviews : '0', 'Reviews', 'text-orange-700', 'pendingStatus'),
+						getAttribute(stats ? stats.prohibited : '0', 'Prohibited', 'text-red-900', 'pendingStatus')
 					]}
 				</div>
 			</div>

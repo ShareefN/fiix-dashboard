@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Typography, Icon } from '@material-ui/core';
+import withReducer from 'app/store/withReducer';
+import { withRouter } from 'react-router-dom';
+import reducer from '../store/reducers';
+import {useDispatch} from 'react-redux';
+import * as Actions from '../store/actions/index'
 import Table from './table';
 
 function Admins(props) {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(Actions.fetchAdmins())
+	},[])
+
 	return (
 		<div>
 			<div className="flex flex-row items-center pl-24">
@@ -16,4 +27,4 @@ function Admins(props) {
 	);
 }
 
-export default Admins;
+export default withReducer('adminsReducer', reducer)(withRouter(Admins));

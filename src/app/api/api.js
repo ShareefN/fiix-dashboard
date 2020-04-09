@@ -1,5 +1,7 @@
-const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
-const API1_URL = process.env.REACT_APP_FIIX_API_URL;
+const BASE_URL = 'http://localhost:3030';
+// const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
+const API1_URL = 'http://localhost:3030';
+// const API1_URL = process.env.REACT_APP_FIIX_API_URL;
 const onMessageListeners = [];
 const onAuthorizationListeners = [];
 let authorization;
@@ -21,11 +23,12 @@ const callApiUsingFunction = async evt => {
 
 	let data, res;
 	if (evt.json) {
-		headers = Object.assign({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }, headers);
+		headers = headers;
 		data = JSON.stringify(evt.json);
 	} else {
 		data = evt.body;
 	}
+
 	const response = await fetch(callUrl, {
 		method,
 		headers,
@@ -87,7 +90,14 @@ function createRequest({ method }, type) {
 			let response = await callApiUsingFunction({
 				callUrl: `${url}${path}${qs}`,
 				method,
-				headers: Object.assign({ Authorization: localStorage.getItem('jwt_access_token') }, headers),
+				headers: Object.assign(
+					{
+						Authorization: localStorage.getItem('jwt_access_token'),
+						'Access-Control-Allow-Origin': '*',
+						'Content-Type': 'application/json'
+					},
+					headers
+				),
 				json,
 				body
 			});
@@ -130,7 +140,19 @@ function statistics() {
 }
 
 function getAdmins() {
-	return api.v1.get({path: '/admins/admins'})
+	return api.v1.get({ path: '/admins/admins' });
 }
 
-export { setAuthorization, login, onMessage, statistics, getAdmins };
+function getAdmin(adminId) {
+	return api.v1.get({ path: `/admins/admin/${adminId}` });
+}
+
+function getUsers() {
+	return api.v1.get({ path: '/admins/users' });
+}
+
+function getUser(userId) {
+	return api.v1.get({ path: `/admins/user/${userId}` });
+}
+
+export { setAuthorization, login, onMessage, statistics, getAdmins, getAdmin, getUsers, getUser };

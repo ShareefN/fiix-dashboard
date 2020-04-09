@@ -6,11 +6,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { withRouter } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 function DataTable(props) {
-	const [rowsPerPage, setRowsPerPage] = React.useState(50);
-	const [page, setPage] = React.useState(0);
+	const users = useSelector(({ usersReducer }) => usersReducer.Users.Users);
 
 	const openUser = id => {
 		props.history.push(`/users/${id}/userdetails`);
@@ -31,18 +31,27 @@ function DataTable(props) {
 						</TableRow>
 					</TableHead>
 					<TableBody className="cursor-pointer">
-						<TableRow key={Math.random()} hover className="px-24" onClick={() => openUser(Math.random())}>
-							<TableCell component="th" scope="row" align="center">
-								24
-							</TableCell>
-							<TableCell component="th" scope="row" align="center">
-								Skandar00
-							</TableCell>
-							<TableCell align="center">0798829834</TableCell>
-							<TableCell align="center">Active</TableCell>
-							<TableCell align="center">18-2-2020 - 18:22</TableCell>
-							<TableCell align="center">18-2-2020 - 18:22</TableCell>
-						</TableRow>
+						{users &&
+							users.map(user => {
+								return (
+									<TableRow key={user.id} hover className="px-24" onClick={() => openUser(user.id)}>
+										<TableCell component="th" scope="row" align="center">
+											{user ? user.id : '--'}
+										</TableCell>
+										<TableCell component="th" scope="row" align="center">
+											{user ? user.username : '--'}
+										</TableCell>
+										<TableCell align="center">{user ? user.number : '--'}</TableCell>
+										<TableCell align="center">{user ? user.status : '--'}</TableCell>
+										<TableCell align="center">
+											{moment(user.createdAt).format('DD/MM/YYYY - HH:MM')}
+										</TableCell>
+										<TableCell align="center">
+											{moment(user.updatedAt).format('DD/MM/YYYY - HH:MM')}
+										</TableCell>
+									</TableRow>
+								);
+							})}
 					</TableBody>
 				</Table>
 			</TableContainer>

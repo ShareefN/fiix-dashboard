@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
 import UserDetails from './userDetails';
+import withReducer from 'app/store/withReducer';
+import { withRouter } from 'react-router-dom';
+import reducer from '../store/reducers';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Actions from '../store/actions/index';
 
 function User(props) {
+	const dispatch = useDispatch();
+	const [id] = useState(props.match.params.userId);
+
+	useEffect(() => {
+		dispatch(Actions.fetchUser(id));
+	}, []);
+
+	const user = useSelector(({ userReducer }) => userReducer.User.User);
+
 	return (
 		<div>
 			<div className="flex flex-col flex-1 px-24 pt-24 pb-24 bg-grey-300">
@@ -38,4 +52,4 @@ function User(props) {
 	);
 }
 
-export default User;
+export default withReducer('userReducer', reducer)(withRouter(User));
