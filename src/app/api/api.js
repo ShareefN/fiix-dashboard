@@ -1,7 +1,7 @@
-const BASE_URL = 'http://localhost:3030';
-// const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
-const API1_URL = 'http://localhost:3030';
-// const API1_URL = process.env.REACT_APP_FIIX_API_URL;
+// const BASE_URL = 'http://127.0.0.1:3030';
+const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
+// const API1_URL = 'http://127.0.0.1:3030';
+const API1_URL = process.env.REACT_APP_FIIX_API_URL;
 const onMessageListeners = [];
 const onAuthorizationListeners = [];
 let authorization;
