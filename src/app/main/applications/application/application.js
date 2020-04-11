@@ -1,8 +1,12 @@
 import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography, Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import RejectApplication from './Dialog/rejectApplication';
+import moment from 'moment';
 
 function Application(props) {
+	const application = useSelector(({ applicationReducer }) => applicationReducer.Application.Application);
+
 	return (
 		<>
 			<div className="md:flex max-w-2xl pt-24 pl-24">
@@ -21,38 +25,48 @@ function Application(props) {
 						</AppBar>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Applicant Id</Typography>
+								<Typography>{application.userId}</Typography>
+							</div>
+							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Applied At</Typography>
+								<Typography>{moment(application.createdAt).format('DD/MM/YYYY - HH:MM')}</Typography>
+							</div>
+						</CardContent>
+						<CardContent className="flex flex-row pb-0">
+							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Applicant Name</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.name}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Applicat Email</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.email}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Applicant Number</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.number}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Applicant Location</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.location}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Time In</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.timeIn}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Time Out</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.timeOut}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Category</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.category}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">SubCategory</Typography>
@@ -66,23 +80,17 @@ function Application(props) {
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Profile Image</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.profileImage}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Id Image</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.identity}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Non-Criminal Image</Typography>
-								<Typography>--</Typography>
-							</div>
-						</CardContent>
-						<CardContent className="flex flex-row pb-0">
-							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">Applied At</Typography>
-								<Typography>--</Typography>
+								<Typography>{application.nonCriminal}</Typography>
 							</div>
 						</CardContent>
 					</Card>

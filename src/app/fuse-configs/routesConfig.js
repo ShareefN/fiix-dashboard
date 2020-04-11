@@ -10,9 +10,20 @@ import applications from 'app/main/applications/applicationsConfig';
 import reviews from 'app/main/reviews/reviewsConfig';
 import feedbacks from 'app/main/feedbacks/feedbackConfig';
 import testCases from 'app/main/testCases/testCasesConfig';
+import { ResetConfig } from 'app/main/resetPassword/resetConfig';
 
-const routeConfigs = [login, testCases, feedbacks, contractors, users,
-	 DashboardConfig, admins, applications, reviews];
+const routeConfigs = [
+	login,
+	testCases,
+	feedbacks,
+	contractors,
+	users,
+	DashboardConfig,
+	admins,
+	applications,
+	reviews,
+	ResetConfig
+];
 
 const routes = [
 	...FuseUtils.generateRoutesFromConfigs(routeConfigs),

@@ -1,7 +1,7 @@
-// const BASE_URL = 'http://127.0.0.1:3030';
-const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
-// const API1_URL = 'http://127.0.0.1:3030';
-const API1_URL = process.env.REACT_APP_FIIX_API_URL;
+const BASE_URL = 'http://127.0.0.1:3030';
+// const BASE_URL = process.env.REACT_APP_FIIX_API_URL;
+const API1_URL = 'http://127.0.0.1:3030';
+// const API1_URL = process.env.REACT_APP_FIIX_API_URL;
 const onMessageListeners = [];
 const onAuthorizationListeners = [];
 let authorization;
@@ -155,4 +155,53 @@ function getUser(userId) {
 	return api.v1.get({ path: `/admins/user/${userId}` });
 }
 
-export { setAuthorization, login, onMessage, statistics, getAdmins, getAdmin, getUsers, getUser };
+function getContractors() {
+	return api.v1.get({ path: '/admins/contractors' });
+}
+
+function getContractor(contractorId) {
+	return api.v1.get({ path: `/admins/contractor/${contractorId}` });
+}
+
+function getReviews() {
+	return api.v1.get({ path: '/admins/reviews' });
+}
+
+function getRports() {
+	return api.v1.get({ path: '/admins/reports' });
+}
+
+function getTestCases() {
+	return api.v1.get({ path: '/admins/testcases' });
+}
+
+function getApplications() {
+	return api.v1.get({ path: '/admins/applications' });
+}
+
+function getApplication(applicationId) {
+	return api.v1.get({ path: `/admins/application/${applicationId}` });
+}
+
+function updatePassword(result) {
+	return api.v1.put({ path: `/admins/update/admin/password/${localStorage.getItem('admin_id')}`, json: result });
+}
+
+export {
+	setAuthorization,
+	login,
+	onMessage,
+	statistics,
+	getAdmins,
+	getAdmin,
+	getUsers,
+	getUser,
+	getContractors,
+	getContractor,
+	getReviews,
+	getRports,
+	getTestCases,
+	getApplications,
+	getApplication,
+	updatePassword
+};

@@ -39,10 +39,23 @@ function User(props) {
 					</Typography>
 					<div className="flex flex-row">
 						<div className="flex flex-col pl-24 w-auto">
-							<Typography variant="h6" className="mt-4">
-								User Name
-							</Typography>
-							<Typography variant="subtitle2">User Status</Typography>
+							{user && user.status !== 'active' ? (
+								<>
+									<Typography variant="h6" className="mt-4 text-red-600">
+										{user ? user.username : '--'}
+									</Typography>
+									<Typography variant="subtitle2" className="text-red-600">
+										{user ? user.status : '--'}
+									</Typography>
+								</>
+							) : (
+								<>
+									<Typography variant="h6" className="mt-4">
+										{user ? user.username : '--'}
+									</Typography>
+									<Typography variant="subtitle2">{user ? user.status : '--'}</Typography>
+								</>
+							)}
 						</div>
 					</div>
 				</FuseAnimateGroup>

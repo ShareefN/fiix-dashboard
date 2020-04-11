@@ -71,14 +71,6 @@ const navigationConfig = [
 		type: 'item',
 		icon: 'cast_for_education',
 		url: '/testcases'
-	},
-	{
-		id: 'settings',
-		title: 'Settings',
-		translate: 'SETTINGS',
-		type: 'item',
-		icon: 'settings',
-		url: '/settings'
 	}
 ];
 

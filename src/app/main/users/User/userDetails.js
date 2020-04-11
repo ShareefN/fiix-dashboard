@@ -1,8 +1,12 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography, Icon } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import EditUser from './Dialogs/editUser';
+import moment from 'moment';
 
 function UserDetails(props) {
+	const user = useSelector(({ userReducer }) => userReducer.User.User);
+
 	return (
 		<React.Fragment>
 			<div className="md:flex max-w-2xl pt-24 pl-24">
@@ -25,37 +29,43 @@ function UserDetails(props) {
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Username</Typography>
-								<Typography>--</Typography>
+								<Typography>{user ? user.username : '--'}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Phone</Typography>
-								<Typography>--</Typography>
+								<Typography>{user ? user.number : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Status</Typography>
-								<Typography>--</Typography>
+								<Typography>{user ? user.status : '--'}</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Application Status</Typography>
-								<Typography>--</Typography>
+								<Typography>
+									{user && user.applicationStatus ? user.applicationStatus : '--'}
+								</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Notes</Typography>
-								<Typography>--</Typography>
+								<Typography>{user && user.notes ? user.notes : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Created at</Typography>
-								<Typography>--</Typography>
+								<Typography>
+									{user ? moment(user.createdAt).format('DD/MM/YYYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Updated At</Typography>
-								<Typography>--</Typography>
+								<Typography>
+									{user ? moment(user.updatedAt).format('DD/MM/YYYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 						</CardContent>
 					</Card>

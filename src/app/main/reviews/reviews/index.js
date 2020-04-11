@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Icon, Typography } from '@material-ui/core';
+import withReducer from 'app/store/withReducer';
+import { withRouter } from 'react-router-dom';
+import reducer from '../store/reducers';
+import { useDispatch } from 'react-redux';
+import * as Actions from '../store/actions/index';
 import Table from './table';
 
 function Reviews(prop) {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(Actions.fetchReviews());
+	}, []);
+
 	return (
 		<div>
 			<div className="flex flex-row items-center pl-24">
@@ -11,9 +22,9 @@ function Reviews(prop) {
 					Reviews
 				</Typography>
 			</div>
-      <Table />
+			<Table />
 		</div>
 	);
 }
 
-export default Reviews;
+export default withReducer('reviewsReducer', reducer)(withRouter(Reviews));

@@ -64,6 +64,7 @@ class JwtService extends FuseUtils.EventEmitter {
 		return new Promise((resolve, reject) => {
 			login({ email: email, password: password })
 				.then(response => {
+					localStorage.setItem('admin_id', response.body.Admin.id);
 					setAuthorization(response.body.token);
 					this.setSession(response.body.token);
 					resolve(jwtDecode(response.body.token));
@@ -105,6 +106,7 @@ class JwtService extends FuseUtils.EventEmitter {
 			axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
 		} else {
 			localStorage.removeItem('jwt_access_token');
+			localStorage.removeItem('admin_id')
 			delete axios.defaults.headers.common.Authorization;
 		}
 	};
