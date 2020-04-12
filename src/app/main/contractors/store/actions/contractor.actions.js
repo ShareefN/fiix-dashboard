@@ -1,4 +1,4 @@
-import { getContractor } from '../../../../api/api';
+import { getContractor, deactivateContractor, activateContractor } from '../../../../api/api';
 
 export const GET_CONTRACTOR = 'GET_CONTRACTOR';
 
@@ -13,4 +13,12 @@ export function fetchContractor(contractorId) {
 			});
 		});
 	};
+}
+
+export async function deactivate(contractorId, values) {
+	await deactivateContractor(contractorId, values);
+}
+
+export async function activate(contractorId, values) {
+	await activateContractor(contractorId, values);
 }

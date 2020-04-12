@@ -1,11 +1,13 @@
 import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import EditContractor from './Dialogs/editContractor';
+import DeactiveContractor from './Dialogs/deactivateContractor';
+import ActivateContractor from './Dialogs/activateContractor';
 import moment from 'moment';
 
 function ContractorDetails(props) {
 	const contractor = useSelector(({ contractorReducer }) => contractorReducer.Contractor.Contractor);
+	const user = useSelector(({ auth }) => auth.user);
 
 	return (
 		<React.Fragment>
@@ -21,7 +23,13 @@ function ContractorDetails(props) {
 										</Typography>
 									</div>
 									<div className="flex w-full justify-end pr-24">
-										<EditContractor />
+										{contractor && contractor.status === 'active' ? (
+											<DeactiveContractor contractorId={contractor.id} />
+										) : user && user.role === 'super' ? (
+											<ActivateContractor contractorId={contractor.id}/>
+										) : (
+											''
+										)}
 									</div>
 								</div>
 							</Toolbar>
@@ -72,7 +80,7 @@ function ContractorDetails(props) {
 								<Typography>{contractor ? contractor.notes : '--'}</Typography>
 							</div>
 							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">Contractor Since</Typography>
+								<Typography className="font-bold mb-4 text-15">Contractor Status</Typography>
 								<Typography>{contractor ? contractor.status : '--'}</Typography>
 							</div>
 						</CardContent>
@@ -86,14 +94,18 @@ function ContractorDetails(props) {
 								<Typography>{contractor ? contractor.nonCriminal : '--'}</Typography>
 							</div>
 						</CardContent>
-            <CardContent className="flex flex-row pb-0">
+						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Created At</Typography>
-								<Typography>{contractor ? moment(contractor.createdAt).format('DD/MM/YYY - HH:MM') : '--'}</Typography>
+								<Typography>
+									{contractor ? moment(contractor.createdAt).format('DD/MM/YYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Updated At</Typography>
-								<Typography>{contractor ? moment(contractor.updatedAt).format('DD/MM/YYY - HH:MM') : '--'}</Typography>
+								<Typography>
+									{contractor ? moment(contractor.updatedAt).format('DD/MM/YYY - HH:MM') : '--'}
+								</Typography>
 							</div>
 						</CardContent>
 					</Card>

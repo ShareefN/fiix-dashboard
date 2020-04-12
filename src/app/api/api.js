@@ -187,6 +187,22 @@ function updatePassword(result) {
 	return api.v1.put({ path: `/admins/update/admin/password/${localStorage.getItem('admin_id')}`, json: result });
 }
 
+function deactivateUser(userId, values) {
+	return api.v1.put({ path: `/admins/prohibit/user/${userId}`, json: values });
+}
+
+function activateUser(userId) {
+	return api.v1.put({ path: `/admins/activate/user/${userId}` });
+}
+
+function deactivateContractor(contractorId, values) {
+	return api.v1.put({ path: `/admins/prohibit/contractor/${contractorId}`, json: values });
+}
+
+function activateContractor(contractorId, values) {
+	return api.v1.put({ path: `/admins/activate/contractor/${contractorId}`, json: values });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -203,5 +219,9 @@ export {
 	getTestCases,
 	getApplications,
 	getApplication,
-	updatePassword
+	updatePassword,
+	deactivateUser,
+	activateUser,
+	deactivateContractor,
+	activateContractor
 };

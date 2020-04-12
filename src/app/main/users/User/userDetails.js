@@ -1,7 +1,8 @@
 import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import EditUser from './Dialogs/editUser';
+import DeactivateUser from './Dialogs/deactivateUser';
+import ActivateUser from './Dialogs/activateUser';
 import moment from 'moment';
 
 function UserDetails(props) {
@@ -21,7 +22,11 @@ function UserDetails(props) {
 										</Typography>
 									</div>
 									<div className="flex w-full justify-end pr-24">
-										<EditUser />
+										{user && user.status !== 'active' ? (
+											<ActivateUser userId={user.id} />
+										) : (
+											<DeactivateUser userId={user.id} />
+										)}
 									</div>
 								</div>
 							</Toolbar>
@@ -52,6 +57,10 @@ function UserDetails(props) {
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Notes</Typography>
 								<Typography>{user && user.notes ? user.notes : '--'}</Typography>
+							</div>
+							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Email</Typography>
+								<Typography>{user ? user.email : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">

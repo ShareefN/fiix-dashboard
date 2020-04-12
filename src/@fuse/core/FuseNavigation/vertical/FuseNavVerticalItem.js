@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 		'&.active': {
 			backgroundColor: theme.palette.secondary.main,
 			color: `${theme.palette.secondary.contrastText}!important`,
-			pointerEvents: 'none',
+			// pointerEvents: 'none',
 			transition: 'border-radius .15s cubic-bezier(0.4,0.0,0.2,1)',
 			'& .list-item-text-primary': {
 				color: 'inherit'
@@ -62,7 +62,9 @@ function FuseNavVerticalItem(props) {
 			to={item.url}
 			activeClassName="active"
 			className={clsx(classes.item, 'list-item')}
-			onClick={ev => dispatch(Actions.navbarCloseMobile())}
+			onClick={ev => {
+				dispatch(Actions.navbarCloseMobile());
+			}}
 			exact={item.exact}
 		>
 			{item.icon && (

@@ -1,4 +1,4 @@
-import { getUser } from '../../../../api/api';
+import { getUser, deactivateUser, activateUser } from '../../../../api/api';
 
 export const GET_USER = 'GET_USER';
 
@@ -13,4 +13,12 @@ export function fetchUser(userId) {
 			});
 		});
 	};
+}
+
+export async function deactivate(userId, values) {
+	await deactivateUser(userId, values);
+}
+
+export async function activate(userId) {
+	await activateUser(userId);
 }
