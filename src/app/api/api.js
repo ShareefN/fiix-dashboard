@@ -203,6 +203,22 @@ function activateContractor(contractorId, values) {
 	return api.v1.put({ path: `/admins/activate/contractor/${contractorId}`, json: values });
 }
 
+function deactivateAdmin(adminId, values) {
+	return api.v1.put({ path: `/admins/deactivate/admin/${adminId}`, json: values });
+}
+
+function activateAdmin(adminId) {
+	return api.v1.put({ path: `/admins/activate/admin/${adminId}` });
+}
+
+function editAdmin(adminId, values) {
+	return api.v1.put({ path: `/admins/update/admin/${adminId}`, json: values });
+}
+
+function deleteReview(reviewId) {
+	return api.v1.delete({ path: `/admins/review/${reviewId}` });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -223,5 +239,9 @@ export {
 	deactivateUser,
 	activateUser,
 	deactivateContractor,
-	activateContractor
+	activateContractor,
+	deactivateAdmin,
+	activateAdmin,
+	editAdmin,
+	deleteReview
 };

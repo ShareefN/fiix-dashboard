@@ -4,10 +4,13 @@ import { useSelector } from 'react-redux';
 import DeactiveContractor from './Dialogs/deactivateContractor';
 import ActivateContractor from './Dialogs/activateContractor';
 import moment from 'moment';
+import FuseLoading from '@fuse/core/FuseLoading';
 
 function ContractorDetails(props) {
 	const contractor = useSelector(({ contractorReducer }) => contractorReducer.Contractor.Contractor);
 	const user = useSelector(({ auth }) => auth.user);
+
+	if (!contractor) return <FuseLoading />;
 
 	return (
 		<React.Fragment>
@@ -26,7 +29,7 @@ function ContractorDetails(props) {
 										{contractor && contractor.status === 'active' ? (
 											<DeactiveContractor contractorId={contractor.id} />
 										) : user && user.role === 'super' ? (
-											<ActivateContractor contractorId={contractor.id}/>
+											<ActivateContractor contractorId={contractor.id} />
 										) : (
 											''
 										)}

@@ -1,11 +1,14 @@
 import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
+import DeatctivateAdmin from './Dialogs/deactivateAdmin';
+import ActiveAdmin from './Dialogs/activateAdmin';
 import EditAdmin from './Dialogs/editAdmin';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 function AdminDeatials(props) {
 	const admin = useSelector(({ adminReducer }) => adminReducer.Admin.Admin.result);
+	const user = useSelector(({ auth }) => auth.user);
 
 	return (
 		<React.Fragment>
@@ -21,7 +24,22 @@ function AdminDeatials(props) {
 										</Typography>
 									</div>
 									<div className="flex w-full justify-end pr-24">
-										<EditAdmin />
+										{user && user.role === 'super' ? (
+											<>
+												{admin && admin.status !== 'active' ? (
+													<ActiveAdmin adminId={admin && admin.id} />
+												) : (
+													<>
+														<DeatctivateAdmin adminId={admin && admin.id} />
+														<div className="ml-10">
+															<EditAdmin adminId={admin && admin.id} />
+														</div>
+													</>
+												)}
+											</>
+										) : (
+											''
+										)}
 									</div>
 								</div>
 							</Toolbar>
@@ -62,8 +80,12 @@ function AdminDeatials(props) {
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Role</Typography>
+								<Typography>{admin ? admin.role : '--'}</Typography>
+							</div>
+							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Notes</Typography>
-								<Typography>--</Typography>
+								<Typography>{admin ? admin.notes : '--'}</Typography>
 							</div>
 						</CardContent>
 					</Card>

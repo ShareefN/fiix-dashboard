@@ -6,6 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { useSelector } from 'react-redux';
+import DeleteReview from './dialogs/deleteReview';
 import moment from 'moment';
 
 function DataTable(props) {
@@ -17,6 +18,7 @@ function DataTable(props) {
 				<Table aria-label="simple table">
 					<TableHead className="bg-grey-300 w-full">
 						<TableRow>
+							<TableCell align="center">Review Id</TableCell>
 							<TableCell align="center">User Id</TableCell>
 							<TableCell align="center">Username</TableCell>
 							<TableCell align="center">Number</TableCell>
@@ -24,6 +26,7 @@ function DataTable(props) {
 							<TableCell align="center">Likes</TableCell>
 							<TableCell align="center">Posted At</TableCell>
 							<TableCell align="center">Updated At</TableCell>
+							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -31,6 +34,9 @@ function DataTable(props) {
 							reviews.map(elm => {
 								return (
 									<TableRow key={elm.id} hover className="px-24">
+										<TableCell component="th" scope="row" align="center">
+											{elm ? elm.id : '--'}
+										</TableCell>
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.userId : '--'}
 										</TableCell>
@@ -49,6 +55,9 @@ function DataTable(props) {
 										</TableCell>
 										<TableCell align="center">
 											{elm ? moment(elm.updatedAt).format('DD/MM/YYYY - HH:MM') : '--'}
+										</TableCell>
+										<TableCell align="center">
+											<DeleteReview reviewId={elm.id} />
 										</TableCell>
 									</TableRow>
 								);

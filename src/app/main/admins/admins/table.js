@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import FuseLoading from '@fuse/core/FuseLoading';
 import moment from 'moment';
 
 function DataTable(props) {
@@ -15,6 +16,8 @@ function DataTable(props) {
 	const openAdmin = adminId => {
 		props.history.push(`/admins/${adminId}/admindetails`);
 	};
+
+	if (!admins) return <FuseLoading />;
 
 	return (
 		<div className="flex w-full items-center pb-56">

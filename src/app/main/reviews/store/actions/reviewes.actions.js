@@ -1,4 +1,4 @@
-import { getReviews } from '../../../../api/api';
+import { getReviews, deleteReview } from '../../../../api/api';
 
 export const GET_REVIEWS = 'GET_REVIEWS';
 
@@ -13,4 +13,8 @@ export function fetchReviews() {
 			});
 		});
 	};
+}
+
+export async function removeReview(reviewId) {
+	await deleteReview(reviewId);
 }
