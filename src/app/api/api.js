@@ -219,6 +219,18 @@ function deleteReview(reviewId) {
 	return api.v1.delete({ path: `/admins/review/${reviewId}` });
 }
 
+function editApplciaton(applicationId, values) {
+	return api.v1.put({ path: `/admins/update/application/${applicationId}`, json: values });
+}
+
+function approveApplication(applicationId) {
+	return api.v1.post({ path: `/admins/approve/application/${applicationId}` });
+}
+
+function rejectApplication(applicationId, values) {
+	return api.v1.post({ path: `/admins/reject/application/${applicationId}`, json: values });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -243,5 +255,8 @@ export {
 	deactivateAdmin,
 	activateAdmin,
 	editAdmin,
-	deleteReview
+	deleteReview,
+	editApplciaton,
+	approveApplication,
+	rejectApplication
 };

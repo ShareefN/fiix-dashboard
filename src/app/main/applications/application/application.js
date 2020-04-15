@@ -2,6 +2,8 @@ import React from 'react';
 import { AppBar, Card, CardContent, Toolbar, Typography, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import RejectApplication from './Dialog/rejectApplication';
+import EditApplication from './Dialog/editApplication';
+import ApproveApplication from './Dialog/approveApplication';
 import moment from 'moment';
 
 function Application(props) {
@@ -19,6 +21,15 @@ function Application(props) {
 										<Typography variant="subtitle1" color="inherit" className="flex-1">
 											Application Details
 										</Typography>
+									</div>
+									<div className="mr-20 flex flex-row justify-evenly items-center">
+										<div className="mr-20">
+											<ApproveApplication applicationId={application.id} />
+										</div>
+										<div className="mr-20">
+											<RejectApplication applicationId={application.id} />
+										</div>
+										<EditApplication />
 									</div>
 								</div>
 							</Toolbar>
@@ -95,12 +106,6 @@ function Application(props) {
 						</CardContent>
 					</Card>
 				</div>
-			</div>
-			<div className=" flex flex-row justify-center mt-24 mb-24">
-				<RejectApplication />
-				<Button variant="contained" color="primary" className="cursor-pointer ml-24">
-					Approve Application
-				</Button>
 			</div>
 		</>
 	);

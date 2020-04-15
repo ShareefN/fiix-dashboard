@@ -1,4 +1,4 @@
-import { getApplication } from '../../../../api/api';
+import { getApplication, editApplciaton, approveApplication, rejectApplication } from '../../../../api/api';
 
 export const GET_APPLICATION = 'GET_APPLICATION';
 
@@ -13,4 +13,16 @@ export function fetchApplication(applicationId) {
 			});
 		});
 	};
+}
+
+export async function edit(applicationId, values) {
+	await editApplciaton(applicationId, values);
+}
+
+export async function approve(applicationId) {
+	await approveApplication(applicationId);
+}
+
+export async function reject(applicationId, values) {
+	await rejectApplication(applicationId, values);
 }
