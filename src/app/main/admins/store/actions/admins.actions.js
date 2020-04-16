@@ -1,4 +1,4 @@
-import { getAdmins } from '../../../../api/api';
+import { getAdmins, createAdmin } from '../../../../api/api';
 
 export const GET_ADMINS = 'GET_ADMINS';
 
@@ -13,4 +13,8 @@ export function fetchAdmins() {
 			});
 		});
 	};
+}
+
+export async function create(values) {
+	await createAdmin(values);
 }

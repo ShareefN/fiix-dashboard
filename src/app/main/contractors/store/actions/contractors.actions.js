@@ -1,4 +1,4 @@
-import { getContractors } from '../../../../api/api';
+import { getContractors, createContractor } from '../../../../api/api';
 
 export const GET_CONTRACTORS = 'GET_CONTRACTORS';
 
@@ -13,4 +13,8 @@ export function fetchContractors() {
 			});
 		});
 	};
+}
+
+export async function create(values) {
+	await createContractor(values);
 }

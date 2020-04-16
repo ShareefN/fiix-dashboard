@@ -231,6 +231,14 @@ function rejectApplication(applicationId, values) {
 	return api.v1.post({ path: `/admins/reject/application/${applicationId}`, json: values });
 }
 
+function createAdmin(values) {
+	return api.v1.post({ path: '/admins/create/admin', json: values });
+}
+
+function createContractor(values) {
+	return api.v1.post({ path: '/admins/create/contractor', json: values });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -258,5 +266,7 @@ export {
 	deleteReview,
 	editApplciaton,
 	approveApplication,
-	rejectApplication
+	rejectApplication,
+	createAdmin,
+	createContractor
 };
