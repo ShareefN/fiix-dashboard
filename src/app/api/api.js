@@ -247,6 +247,14 @@ function editContractor(contractorId, values) {
 	return api.v1.put({ path: `/admins/update/contractor/${contractorId}`, json: values });
 }
 
+function getReport(feedbackId) {
+	return api.v1.get({ path: `/admins/report/${feedbackId}` });
+}
+
+function updateReport(feedbackId, adminId, values) {
+	return api.v1.put({ path: `/admins/update/report/${feedbackId}/admin/${adminId}`, json: values });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -278,5 +286,7 @@ export {
 	createAdmin,
 	createContractor,
 	createUser,
-	editContractor
+	editContractor,
+	getReport,
+	updateReport
 };

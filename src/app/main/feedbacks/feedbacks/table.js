@@ -6,10 +6,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function DataTable(props) {
 	const reports = useSelector(({ reportsReducer }) => reportsReducer.Reports.Reports);
+
+	const openReport = id => {
+		props.history.push(`/feedback/${id}/feddbackdetails`);
+	};
 
 	return (
 		<div className="flex w-full items-center pb-56">
@@ -20,7 +25,6 @@ function DataTable(props) {
 							<TableCell align="center">User Id</TableCell>
 							<TableCell align="center">Username</TableCell>
 							<TableCell align="center">Number</TableCell>
-							<TableCell align="center">Report</TableCell>
 							<TableCell align="center">Status</TableCell>
 							<TableCell align="center">Created At</TableCell>
 							<TableCell align="center">Updated At</TableCell>
@@ -30,7 +34,7 @@ function DataTable(props) {
 						{reports &&
 							reports.map(elm => {
 								return (
-									<TableRow key={elm.id} hover className="px-24">
+									<TableRow key={elm.id} hover className="px-24" onClick={() => openReport(elm.id)}>
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.userId : '--'}
 										</TableCell>
@@ -40,7 +44,6 @@ function DataTable(props) {
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.number : '--'}
 										</TableCell>
-										<TableCell align="center">{elm ? elm.report : '--'}</TableCell>
 										<TableCell align="center">{elm ? elm.status : '--'}</TableCell>
 										<TableCell align="center">
 											{elm ? moment(elm.createdAt).format('DD/MM/YYYY - HH:MM') : '--'}
@@ -58,4 +61,4 @@ function DataTable(props) {
 	);
 }
 
-export default DataTable;
+export default withRouter(DataTable);

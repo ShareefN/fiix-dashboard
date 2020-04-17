@@ -1,1 +1,2 @@
-export * from './reviews.actions';
+export * from './reports.actions';
+export * from './report.actions';

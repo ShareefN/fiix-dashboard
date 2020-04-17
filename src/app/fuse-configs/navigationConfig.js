@@ -63,14 +63,6 @@ const navigationConfig = [
 		type: 'item',
 		icon: 'feedback',
 		url: '/feedback'
-	},
-	{
-		id: 'testCases',
-		title: 'Test Cases',
-		translate: 'TEST CASES',
-		type: 'item',
-		icon: 'cast_for_education',
-		url: '/testcases'
 	}
 ];
 
