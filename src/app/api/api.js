@@ -239,6 +239,14 @@ function createContractor(values) {
 	return api.v1.post({ path: '/admins/create/contractor', json: values });
 }
 
+function createUser(values) {
+	return api.v1.post({ path: '/admins/create/user', json: values });
+}
+
+function editContractor(contractorId, values) {
+	return api.v1.put({ path: `/admins/update/contractor/${contractorId}`, json: values });
+}
+
 export {
 	setAuthorization,
 	login,
@@ -268,5 +276,7 @@ export {
 	approveApplication,
 	rejectApplication,
 	createAdmin,
-	createContractor
+	createContractor,
+	createUser,
+	editContractor
 };

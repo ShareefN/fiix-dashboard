@@ -3,6 +3,7 @@ import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/cor
 import { useSelector } from 'react-redux';
 import DeactiveContractor from './Dialogs/deactivateContractor';
 import ActivateContractor from './Dialogs/activateContractor';
+import EditContractor from './Dialogs/editContractor';
 import moment from 'moment';
 import FuseLoading from '@fuse/core/FuseLoading';
 
@@ -27,7 +28,12 @@ function ContractorDetails(props) {
 									</div>
 									<div className="flex w-full justify-end pr-24">
 										{contractor && contractor.status === 'active' ? (
-											<DeactiveContractor contractorId={contractor.id} />
+											<>
+												<div className="mr-10">
+													<DeactiveContractor contractorId={contractor.id} />
+												</div>
+												<EditContractor />
+											</>
 										) : user && user.role === 'super' ? (
 											<ActivateContractor contractorId={contractor.id} />
 										) : (

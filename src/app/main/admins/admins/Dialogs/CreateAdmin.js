@@ -11,6 +11,7 @@ import { TextFieldFormsy, SelectFormsy } from '@fuse/core/formsy';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import 'app/main/helpers/validationRules';
+import * as MessageActions from 'app/store/actions/fuse/message.actions';
 import * as Actions from '../../store/actions/index';
 
 const useStyles = makeStyles(theme => ({
@@ -46,6 +47,7 @@ function CreateAdmin(props) {
 
 	const submit = async model => {
 		await Actions.create(model);
+		dispatch(MessageActions.showMessage({ message: 'Admin successfully created', variant: 'success' }));
 		dispatch(Actions.fetchAdmins());
 		setDialog(false);
 	};

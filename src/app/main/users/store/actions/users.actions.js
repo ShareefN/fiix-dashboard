@@ -1,4 +1,4 @@
-import { getUsers } from '../../../../api/api';
+import { getUsers, createUser } from '../../../../api/api';
 
 export const GET_USERS = 'GET_USERS';
 
@@ -13,4 +13,8 @@ export function fetchUsers() {
 			});
 		});
 	};
+}
+
+export async function create(values){
+	await createUser(values)
 }
