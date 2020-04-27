@@ -111,6 +111,7 @@
         "tailwindcss-dir": "4.0.0"
     },
     "scripts": {
+        "local": "npm run tailwind && react-scripts start",
         "start": "node server.js npm run tailwind && react-scripts start",
         "build": "npm run tailwind && npm run purge-tailwind && cross-env GENERATE_SOURCEMAP=false react-scripts build",
         "tailwind": "tailwind build ./src/styles/tailwind-config.css -c ./tailwind.config.js -o ./src/styles/tailwind.css",

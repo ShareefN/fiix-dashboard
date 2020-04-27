@@ -23,9 +23,7 @@ function DataTable(props) {
 							<TableCell align="center">Username</TableCell>
 							<TableCell align="center">Number</TableCell>
 							<TableCell align="center">Review</TableCell>
-							<TableCell align="center">Likes</TableCell>
 							<TableCell align="center">Posted At</TableCell>
-							<TableCell align="center">Updated At</TableCell>
 							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
@@ -49,12 +47,8 @@ function DataTable(props) {
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.review : '--'}
 										</TableCell>
-										<TableCell align="center">{elm ? elm.likes : '0'}</TableCell>
 										<TableCell align="center">
 											{elm ? moment(elm.createdAt).format('DD/MM/YYYY - HH:MM') : '--'}
-										</TableCell>
-										<TableCell align="center">
-											{elm ? moment(elm.updatedAt).format('DD/MM/YYYY - HH:MM') : '--'}
 										</TableCell>
 										<TableCell align="center">
 											<DeleteReview reviewId={elm.id} />
