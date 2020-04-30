@@ -140,9 +140,9 @@ function CreateContractor(props) {
 											required: true
 										}}
 									>
-										<MenuItem value="Mechanic">Mechanic</MenuItem>
-										<MenuItem value="Carpetnur">Carpetnur</MenuItem>
-										<MenuItem value="Tarkhees">Tarkhees</MenuItem>
+										{constants.CATEGORIES.map((elm, index) => {
+											return <MenuItem value={elm.label}>{elm.label}</MenuItem>;
+										})}
 									</SelectFormsy>
 								</Grid>
 								<Grid item xl={4} lg={4} md={4} sm={4} className="w-full">

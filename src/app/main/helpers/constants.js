@@ -30,8 +30,54 @@ const LOCATIONS = [
 	}
 ];
 
+const CATEGORIES = [
+	{
+		label: 'Mechanics'
+	},
+	{
+		label: 'Electricians'
+	},
+	{
+		label: 'Carpenter'
+	},
+	{
+		label: 'Agricultural Engineers'
+	},
+	{
+		label: 'Plumbers'
+	},
+	{
+		label: 'Designers'
+	},
+	{
+		label: 'Legal Consultations'
+	},
+	{
+		label: 'Dry Cleans'
+	},
+	{
+		label: 'House Keepers'
+	},
+	{
+		label: 'Translators'
+	},
+	{
+		label: 'Gas'
+	},
+	{
+		label: 'Deisel Trucks'
+	},
+	{
+		label: 'Water Trucks'
+	},
+	{
+		label: 'Transportaions Services'
+	}
+];
+
 const constants = {
-	LOCATIONS
+	LOCATIONS,
+	CATEGORIES
 };
 
 export { constants };
