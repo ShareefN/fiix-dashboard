@@ -38,7 +38,7 @@ const CATEGORIES = [
 		label: 'Electricians'
 	},
 	{
-		label: 'Carpenter'
+		label: 'Carpenters'
 	},
 	{
 		label: 'Agricultural Engineers'
