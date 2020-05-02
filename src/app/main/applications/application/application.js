@@ -1,13 +1,18 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography, Icon, Tooltip } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import RejectApplication from './Dialog/rejectApplication';
 import EditApplication from './Dialog/editApplication';
 import ApproveApplication from './Dialog/approveApplication';
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
 
 function Application(props) {
 	const application = useSelector(({ applicationReducer }) => applicationReducer.Application.Application);
+
+	const openUser = id => {
+		props.history.push(`/users/${id}/userdetails`);
+	};
 
 	return (
 		<>
@@ -23,6 +28,13 @@ function Application(props) {
 										</Typography>
 									</div>
 									<div className="mr-20 flex flex-row justify-evenly items-center">
+										<div className="mr-20" onClick={() => openUser(application.userId)}>
+											<Tooltip title="View user details">
+												<Icon fontSize="large" className="cursor-pointer">
+													pageview
+												</Icon>
+											</Tooltip>
+										</div>
 										<div className="mr-20">
 											<ApproveApplication applicationId={application.id} />
 										</div>
@@ -34,16 +46,6 @@ function Application(props) {
 								</div>
 							</Toolbar>
 						</AppBar>
-						<CardContent className="flex flex-row pb-0">
-							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">Applicant Id</Typography>
-								<Typography>{application.userId}</Typography>
-							</div>
-							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">Applied At</Typography>
-								<Typography>{moment(application.createdAt).format('DD/MM/YYYY - HH:MM')}</Typography>
-							</div>
-						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Applicant Name</Typography>
@@ -111,4 +113,4 @@ function Application(props) {
 	);
 }
 
-export default Application;
+export default withRouter(Application);

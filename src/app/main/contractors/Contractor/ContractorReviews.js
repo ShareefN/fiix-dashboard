@@ -1,16 +1,28 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography, Icon, Tooltip } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as Actions from 'app/main/contractors/store/actions/index';
 import moment from 'moment';
 
 function ContractorReviews(props) {
+	const dispatch = useDispatch();
 	const reviews = useSelector(({ contractorReducer }) => contractorReducer.Contractor.Reviews);
+
+	const handleDeleteReview = async reviewId => {
+		await Actions.deleteReview(props.id, reviewId);
+		dispatch(Actions.getReviews(props.id));
+  };
+
+  const openUser = id => {
+		props.history.push(`/users/${id}/userdetails`);
+	};
 
 	return (
 		<React.Fragment>
@@ -39,6 +51,8 @@ function ContractorReviews(props) {
 											<TableCell align="left">Username</TableCell>
 											<TableCell align="left">Review</TableCell>
 											<TableCell align="left">Created At</TableCell>
+											<TableCell align="left"></TableCell>
+											<TableCell align="left"></TableCell>
 										</TableRow>
 									</TableHead>
 									<TableBody className="cursor-pointer">
@@ -60,6 +74,19 @@ function ContractorReviews(props) {
 														<TableCell align="left">
 															{moment(elm.updatedAt).format('DD/MM/YYY - HH:MM')}
 														</TableCell>
+														<TableCell align="left">
+															<Tooltip title="View user details" onClick={() => openUser(elm.userId)}>
+																<Icon>pageview</Icon>
+															</Tooltip>
+														</TableCell>
+														<TableCell align="left">
+															<Tooltip
+																title="Delete Review"
+																onClick={() => handleDeleteReview(elm.id)}
+															>
+																<Icon>delete</Icon>
+															</Tooltip>
+														</TableCell>
 													</TableRow>
 												);
 											})}
@@ -74,4 +101,4 @@ function ContractorReviews(props) {
 	);
 }
 
-export default ContractorReviews;
+export default withRouter(ContractorReviews);

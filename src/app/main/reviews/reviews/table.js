@@ -8,9 +8,15 @@ import TableRow from '@material-ui/core/TableRow';
 import { useSelector } from 'react-redux';
 import DeleteReview from './dialogs/deleteReview';
 import moment from 'moment';
+import { Icon, Tooltip } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 
 function DataTable(props) {
 	const reviews = useSelector(({ reviewsReducer }) => reviewsReducer.Reviews.Reviews);
+
+	const openUser = id => {
+		props.history.push(`/users/${id}/userdetails`);
+	};
 
 	return (
 		<div className="flex w-full items-center pb-56">
@@ -19,11 +25,11 @@ function DataTable(props) {
 					<TableHead className="bg-grey-300 w-full">
 						<TableRow>
 							<TableCell align="center">Review Id</TableCell>
-							<TableCell align="center">User Id</TableCell>
 							<TableCell align="center">Username</TableCell>
 							<TableCell align="center">Number</TableCell>
 							<TableCell align="center">Review</TableCell>
 							<TableCell align="center">Posted At</TableCell>
+							<TableCell align="center"></TableCell>
 							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
@@ -36,9 +42,6 @@ function DataTable(props) {
 											{elm ? elm.id : '--'}
 										</TableCell>
 										<TableCell component="th" scope="row" align="center">
-											{elm ? elm.userId : '--'}
-										</TableCell>
-										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.username : '--'}
 										</TableCell>
 										<TableCell component="th" scope="row" align="center">
@@ -49,6 +52,15 @@ function DataTable(props) {
 										</TableCell>
 										<TableCell align="center">
 											{elm ? moment(elm.createdAt).format('DD/MM/YYYY - HH:MM') : '--'}
+										</TableCell>
+										<TableCell
+											align="center"
+											className="cursor-pointer"
+											onClick={() => openUser(elm.userId)}
+										>
+											<Tooltip title="View user detials">
+												<Icon>pageview</Icon>
+											</Tooltip>
 										</TableCell>
 										<TableCell align="center">
 											<DeleteReview reviewId={elm.id} />
@@ -63,4 +75,4 @@ function DataTable(props) {
 	);
 }
 
-export default DataTable;
+export default withRouter(DataTable);

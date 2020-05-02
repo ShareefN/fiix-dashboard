@@ -23,12 +23,12 @@ function DataTable(props) {
 					<TableHead className="bg-grey-300 w-full">
 						<TableRow>
 							<TableCell align="center">Application Id</TableCell>
-							<TableCell align="center">Applicant Id</TableCell>
 							<TableCell align="center">Applicant Name</TableCell>
 							<TableCell align="center">Number</TableCell>
 							<TableCell align="center">Location</TableCell>
 							<TableCell align="center">Category</TableCell>
 							<TableCell align="center">Applied At</TableCell>
+							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody className="cursor-pointer">
@@ -43,9 +43,6 @@ function DataTable(props) {
 									>
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.id : '--'}
-										</TableCell>
-										<TableCell component="th" scope="row" align="center">
-											{elm ? elm.userId : '--'}
 										</TableCell>
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.name : '--'}

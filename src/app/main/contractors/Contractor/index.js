@@ -69,7 +69,7 @@ function Contractor(props) {
 				</FuseAnimateGroup>
 			</div>
 			<ContractorDetails />
-			<ContractorReviews />
+			<ContractorReviews id={id} />
 		</div>
 	);
 }

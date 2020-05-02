@@ -3,7 +3,8 @@ import {
 	deactivateContractor,
 	activateContractor,
 	editContractor,
-	fetchContractorsReviews
+	fetchContractorsReviews,
+	deleteContractorReview
 } from '../../../../api/api';
 
 export const GET_CONTRACTOR = 'GET_CONTRACTOR';
@@ -22,17 +23,17 @@ export function fetchContractor(contractorId) {
 	};
 }
 
-export function getReviews(contractorId){
-	const request = fetchContractorsReviews(contractorId)
+export function getReviews(contractorId) {
+	const request = fetchContractorsReviews(contractorId);
 
 	return dispatch => {
 		request.then(response => {
 			dispatch({
 				type: GET_CONTRACTORS_REVIEWS,
 				payload: response.body
-			})
-		})
-	}
+			});
+		});
+	};
 }
 
 export async function deactivate(contractorId, values) {
@@ -45,4 +46,8 @@ export async function activate(contractorId, values) {
 
 export async function updateContractor(contractorId, values) {
 	await editContractor(contractorId, values);
+}
+
+export async function deleteReview(contractorId, reviewId) {
+	await deleteContractorReview(contractorId, reviewId);
 }
