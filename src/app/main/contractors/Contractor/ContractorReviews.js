@@ -47,7 +47,6 @@ function ContractorReviews(props) {
 										<TableRow>
 											<TableCell></TableCell>
 											<TableCell align="left">Review Id</TableCell>
-											<TableCell align="left">User Id</TableCell>
 											<TableCell align="left">Username</TableCell>
 											<TableCell align="left">Review</TableCell>
 											<TableCell align="left">Created At</TableCell>
@@ -63,9 +62,6 @@ function ContractorReviews(props) {
 														<TableCell></TableCell>
 														<TableCell component="th" scope="row" align="left">
 															{elm.id}
-														</TableCell>
-														<TableCell component="th" scope="row" align="left">
-															{elm.userId}
 														</TableCell>
 														<TableCell component="th" scope="row" align="left">
 															{elm.username}
