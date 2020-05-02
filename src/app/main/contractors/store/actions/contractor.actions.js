@@ -1,6 +1,13 @@
-import { getContractor, deactivateContractor, activateContractor, editContractor } from '../../../../api/api';
+import {
+	getContractor,
+	deactivateContractor,
+	activateContractor,
+	editContractor,
+	fetchContractorsReviews
+} from '../../../../api/api';
 
 export const GET_CONTRACTOR = 'GET_CONTRACTOR';
+export const GET_CONTRACTORS_REVIEWS = 'GET_CONTRACTORS_REVIEWS';
 
 export function fetchContractor(contractorId) {
 	const request = getContractor(contractorId);
@@ -13,6 +20,19 @@ export function fetchContractor(contractorId) {
 			});
 		});
 	};
+}
+
+export function getReviews(contractorId){
+	const request = fetchContractorsReviews(contractorId)
+
+	return dispatch => {
+		request.then(response => {
+			dispatch({
+				type: GET_CONTRACTORS_REVIEWS,
+				payload: response.body
+			})
+		})
+	}
 }
 
 export async function deactivate(contractorId, values) {

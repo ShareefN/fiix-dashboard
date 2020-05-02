@@ -9,6 +9,7 @@ import * as Actions from '../store/actions/index';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
 import Avatar from '@material-ui/core/Avatar';
 import ContractorDetails from './ContractorDetails';
+import ContractorReviews from './ContractorReviews';
 
 function Contractor(props) {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Contractor(props) {
 
 	useEffect(() => {
 		dispatch(Actions.fetchContractor(id));
+		dispatch(Actions.getReviews(id))
 	}, []);
 
 	const contractor = useSelector(({ contractorReducer }) => contractorReducer.Contractor.Contractor);
@@ -67,6 +69,7 @@ function Contractor(props) {
 				</FuseAnimateGroup>
 			</div>
 			<ContractorDetails />
+			<ContractorReviews />
 		</div>
 	);
 }

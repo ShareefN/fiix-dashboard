@@ -1,7 +1,8 @@
 import * as Actions from '../actions/index';
 
 const initalValues = {
-	Contractor: []
+	Contractor: [],
+	Reviews: []
 };
 
 const Contractor = function(state = initalValues, action) {
@@ -10,6 +11,12 @@ const Contractor = function(state = initalValues, action) {
 			return {
 				...state,
 				Contractor: action.payload
+			};
+		}
+		case Actions.GET_CONTRACTORS_REVIEWS: {
+			return {
+				...state,
+				Reviews: action.payload
 			};
 		}
 		default: {

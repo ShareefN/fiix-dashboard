@@ -104,12 +104,9 @@ function CreateContractor(props) {
 										value={''}
 										label="email"
 										variant="outlined"
+										validationError="this field is required"
 										validations={{
-											isEmail: true,
 											required: true
-										}}
-										validationErrors={{
-											isEmail: 'Invalid Email Address'
 										}}
 									/>
 								</Grid>
