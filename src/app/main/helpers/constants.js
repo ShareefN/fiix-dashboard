@@ -65,6 +65,9 @@ const CATEGORIES = [
 		label: 'Translators'
 	},
 	{
+		label: 'Pickup Trucks'
+	},
+	{
 		label: 'Gas'
 	},
 	{
