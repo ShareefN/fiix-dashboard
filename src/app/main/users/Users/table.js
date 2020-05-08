@@ -29,6 +29,7 @@ function DataTable(props) {
 							<TableCell align="center">Username</TableCell>
 							<TableCell align="center">Contact</TableCell>
 							<TableCell align="center">Status</TableCell>
+							<TableCell align="center">Application Status</TableCell>
 							<TableCell align="center">Joined At</TableCell>
 							<TableCell align="center">Updated At</TableCell>
 						</TableRow>
@@ -46,6 +47,7 @@ function DataTable(props) {
 										</TableCell>
 										<TableCell align="center">{user ? user.number : '--'}</TableCell>
 										<TableCell align="center">{user ? user.status : '--'}</TableCell>
+										<TableCell align="center">{user ? user.applicationStatus : '--'}</TableCell>
 										<TableCell align="center">
 											{moment(user.createdAt).format('DD/MM/YYYY - HH:MM')}
 										</TableCell>

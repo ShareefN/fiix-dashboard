@@ -1,11 +1,17 @@
 import React from 'react';
-import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Card, CardContent, Toolbar, Typography, Tooltip } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import EditReport from './Dialogs/EditFeedback';
+import { Icon } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 
 function FeedbackDetails(props) {
 	const report = useSelector(({ feedbackReducer }) => feedbackReducer.Report.Report);
+
+	const openUser = id => {
+		props.history.push(`/users/${id}/userdetails`);
+	};
 
 	return (
 		<React.Fragment>
@@ -20,17 +26,16 @@ function FeedbackDetails(props) {
 											Feedback Details
 										</Typography>
 									</div>
-									<div className="flex w-full justify-end pr-24">
+									<div className="flex w-full justify-end pr-24 items-center">
+										<Tooltip title="View User">
+											<Icon onClick={() => openUser(report.userId)} className="mr-24 cursor-pointer">pageview</Icon>
+										</Tooltip>
 										<EditReport reportId={report && report.id} />
 									</div>
 								</div>
 							</Toolbar>
 						</AppBar>
 						<CardContent className="flex flex-row pb-0">
-							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">User Id</Typography>
-								<Typography>{report.userId ? report.userId : '--'}</Typography>
-							</div>
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">User Name</Typography>
 								<Typography>{report.username ? report.username : '--'}</Typography>
@@ -56,7 +61,7 @@ function FeedbackDetails(props) {
 								<Typography>{report.report ? report.report : '--'}</Typography>
 							</div>
 						</CardContent>
-            <CardContent className="flex flex-row pb-0">
+						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Notes</Typography>
 								<Typography>{report.notes ? report.notes : '--'}</Typography>
@@ -78,4 +83,4 @@ function FeedbackDetails(props) {
 		</React.Fragment>
 	);
 }
-export default FeedbackDetails;
+export default withRouter(FeedbackDetails);
