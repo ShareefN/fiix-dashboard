@@ -1,4 +1,4 @@
-import { getUser, deactivateUser, activateUser } from '../../../../api/api';
+import { getUser, deactivateUser, activateUser, updateUser } from '../../../../api/api';
 
 export const GET_USER = 'GET_USER';
 
@@ -21,4 +21,8 @@ export async function deactivate(userId, values) {
 
 export async function activate(userId) {
 	await activateUser(userId);
+}
+
+export async function editUser(userId, values) {
+	await updateUser(userId, values);
 }

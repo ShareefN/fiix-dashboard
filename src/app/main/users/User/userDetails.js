@@ -3,10 +3,12 @@ import { AppBar, Card, CardContent, Toolbar, Typography } from '@material-ui/cor
 import { useSelector } from 'react-redux';
 import DeactivateUser from './Dialogs/deactivateUser';
 import ActivateUser from './Dialogs/activateUser';
+import EditUser from './Dialogs/editUser';
 import moment from 'moment';
 
 function UserDetails(props) {
 	const user = useSelector(({ userReducer }) => userReducer.User.User);
+	const admin = useSelector(({ auth }) => auth.user);
 
 	return (
 		<React.Fragment>
@@ -22,6 +24,7 @@ function UserDetails(props) {
 										</Typography>
 									</div>
 									<div className="flex w-full justify-end pr-24">
+										{admin && admin.role === 'super' ? <EditUser userId={user.id} /> : null}
 										{user && user.status !== 'active' ? (
 											<ActivateUser userId={user.id} />
 										) : (
