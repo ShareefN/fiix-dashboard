@@ -50,6 +50,12 @@ const CATEGORIES = [
 		label: 'Plumbers'
 	},
 	{
+		label: 'Barbers'
+	},
+	{
+		label: 'Hair Dressers'
+	},
+	{
 		label: 'Designers'
 	},
 	{
