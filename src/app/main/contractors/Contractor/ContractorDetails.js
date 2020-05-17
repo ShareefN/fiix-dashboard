@@ -55,6 +55,12 @@ function ContractorDetails(props) {
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Bio</Typography>
+								<Typography>{contractor ? contractor.bio : '--'}</Typography>
+							</div>
+						</CardContent>
+						<CardContent className="flex flex-row pb-0">
+							<div className="w-full mb-24">
 								<Typography className="font-bold mb-4 text-15">Phone</Typography>
 								<Typography>{contractor ? contractor.number : '--'}</Typography>
 							</div>

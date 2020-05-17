@@ -32,13 +32,16 @@ const LOCATIONS = [
 
 const CATEGORIES = [
 	{
-		label: 'Mechanics'
+		label: 'Mechanics',
+		value: 'Mechanics'
 	},
 	{
-		label: 'Electricians'
+		label: 'Electricians',
+		value: 'Electricians'
 	},
 	{
-		label: 'Hardware Electricians'
+		label: 'Hardware Electricians',
+		value: 'Hardware Electricians'
 	},
 	{
 		label: 'Carpenters'

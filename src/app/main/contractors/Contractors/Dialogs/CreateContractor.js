@@ -240,9 +240,16 @@ function CreateContractor(props) {
 	return (
 		<React.Fragment>
 			<Tooltip title="Create Contractor" arrow>
-				<Icon className="cursor-pointer" color="primary" onClick={() => setDialog(true)}>
-					add
-				</Icon>
+				<Button
+					onClick={() => setDialog(true)}
+					variant="contained"
+					color="primary"
+					className="w-auto ml-16 mb-16 normal-case"
+					type="reset"
+					value="legacy"
+				>
+					Create Contractor
+				</Button>
 			</Tooltip>
 			{formDialog()}
 		</React.Fragment>

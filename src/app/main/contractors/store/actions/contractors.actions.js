@@ -15,6 +15,15 @@ export function fetchContractors() {
 	};
 }
 
+export function fitlerContractors(contractors) {
+	return dispatch => {
+		dispatch({
+			type: GET_CONTRACTORS,
+			payload: contractors
+		});
+	};
+}
+
 export async function create(values) {
 	await createContractor(values);
 }

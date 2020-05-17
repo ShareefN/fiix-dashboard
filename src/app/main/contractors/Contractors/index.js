@@ -6,6 +6,7 @@ import reducer from '../store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions/index';
 import CreateContractor from './Dialogs/CreateContractor';
+import Inputs from './inputs';
 import Table from './table';
 
 const Contractors = props => {
@@ -25,8 +26,9 @@ const Contractors = props => {
 						Contractors
 					</Typography>
 				</div>
-				<div className="mr-48">{user && user.role === 'super' ? <CreateContractor /> : ''}</div>
 			</div>
+			<Inputs />
+			<div className="mr-48">{user && user.role === 'super' ? <CreateContractor /> : ''}</div>
 			<Table />
 		</div>
 	);

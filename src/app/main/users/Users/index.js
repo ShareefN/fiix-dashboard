@@ -7,6 +7,7 @@ import reducer from '../store/reducers';
 import CreateUser from './Dialogs/CreateUser';
 import { useDispatch } from 'react-redux';
 import * as Actions from '../store/actions/index';
+import Inputs from './inputs';
 
 const Users = props => {
 	const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Users = props => {
 					<CreateUser />
 				</div>
 			</div>
+			<Inputs />
 			<Table />
 		</div>
 	);

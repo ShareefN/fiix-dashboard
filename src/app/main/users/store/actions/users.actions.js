@@ -15,6 +15,15 @@ export function fetchUsers() {
 	};
 }
 
-export async function create(values){
-	await createUser(values)
+export function filterUsers(users) {
+	return dispatch => {
+		dispatch({
+			type: GET_USERS,
+			payload: users
+		});
+	};
+}
+
+export async function create(values) {
+	await createUser(values);
 }
