@@ -213,7 +213,6 @@ function CreateContractor(props) {
 										}}
 									/>
 								</Grid>
-
 								<Grid item className="w-full">
 									<TextFieldFormsy
 										className={classes.filledField + ' my-2 mx-2 w-full'}
