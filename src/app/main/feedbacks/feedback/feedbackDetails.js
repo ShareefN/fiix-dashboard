@@ -13,6 +13,10 @@ function FeedbackDetails(props) {
 		props.history.push(`/users/${id}/userdetails`);
 	};
 
+	const openContractor = id => {
+		props.history.push(`/contractors/${id}/contractordetails`);
+	};
+
 	return (
 		<React.Fragment>
 			<div className="md:flex max-w-2xl pt-24 pl-24">
@@ -27,9 +31,13 @@ function FeedbackDetails(props) {
 										</Typography>
 									</div>
 									<div className="flex w-full justify-end pr-24 items-center">
-										<Tooltip title="View User">
+										<Tooltip title={report.userId ? 'View User' : 'View Contractor'}>
 											<Icon
-												onClick={() => openUser(report.userId)}
+												onClick={() =>
+													report.userId
+														? openUser(report.userId)
+														: openContractor(report.contractorId)
+												}
 												className="mr-24 cursor-pointer"
 											>
 												pageview
