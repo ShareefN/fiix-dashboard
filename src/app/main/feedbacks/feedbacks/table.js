@@ -22,7 +22,8 @@ function DataTable(props) {
 				<Table aria-label="simple table">
 					<TableHead className="bg-grey-300 w-full">
 						<TableRow>
-							<TableCell align="center">Username</TableCell>
+							<TableCell align="center">Title</TableCell>
+							<TableCell align="center">Name</TableCell>
 							<TableCell align="center">Number</TableCell>
 							<TableCell align="center">Status</TableCell>
 							<TableCell align="center">Created At</TableCell>
@@ -35,7 +36,10 @@ function DataTable(props) {
 								return (
 									<TableRow key={elm.id} hover className="px-24" onClick={() => openReport(elm.id)}>
 										<TableCell component="th" scope="row" align="center">
-											{elm ? elm.username : '--'}
+											{elm && elm.userId ? 'User' : 'Contractor'}
+										</TableCell>
+										<TableCell component="th" scope="row" align="center">
+											{elm ? elm.name : '--'}
 										</TableCell>
 										<TableCell component="th" scope="row" align="center">
 											{elm ? elm.number : '--'}

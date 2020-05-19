@@ -28,7 +28,12 @@ function FeedbackDetails(props) {
 									</div>
 									<div className="flex w-full justify-end pr-24 items-center">
 										<Tooltip title="View User">
-											<Icon onClick={() => openUser(report.userId)} className="mr-24 cursor-pointer">pageview</Icon>
+											<Icon
+												onClick={() => openUser(report.userId)}
+												className="mr-24 cursor-pointer"
+											>
+												pageview
+											</Icon>
 										</Tooltip>
 										<EditReport reportId={report && report.id} />
 									</div>
@@ -37,8 +42,12 @@ function FeedbackDetails(props) {
 						</AppBar>
 						<CardContent className="flex flex-row pb-0">
 							<div className="w-full mb-24">
-								<Typography className="font-bold mb-4 text-15">User Name</Typography>
-								<Typography>{report.username ? report.username : '--'}</Typography>
+								<Typography className="font-bold mb-4 text-15">Title</Typography>
+								<Typography>{report && report.userId ? 'User' : 'Contractor'}</Typography>
+							</div>
+							<div className="w-full mb-24">
+								<Typography className="font-bold mb-4 text-15">Name</Typography>
+								<Typography>{report.name ? report.name : '--'}</Typography>
 							</div>
 						</CardContent>
 						<CardContent className="flex flex-row pb-0">

@@ -40,7 +40,7 @@ function Feedback(props) {
 					</Typography>
 					<div className="flex flex-col">
 						<Typography variant="h6" className="mt-4">
-							{report.username ? report.username : '--'}
+							{report.name ? report.name : '--'}
 						</Typography>
 						<Typography variant="subtitle2">
 							{moment(report.createdAt).format('DD/MM/YYY -- HH:MM A')}
