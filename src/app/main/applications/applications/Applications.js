@@ -3,12 +3,13 @@ import { Typography, Icon } from '@material-ui/core';
 import withReducer from 'app/store/withReducer';
 import { withRouter } from 'react-router-dom';
 import reducer from '../store/reducers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions/index';
 import Table from './table';
 
 function Applications(props) {
 	const dispatch = useDispatch();
+	const applications = useSelector(({ applicationsReducer }) => applicationsReducer.Applications.Applications);
 
 	useEffect(() => {
 		dispatch(Actions.fetchApplications());
@@ -22,6 +23,7 @@ function Applications(props) {
 					Applications
 				</Typography>
 			</div>
+			<Typography className="ml-92">Total: {applications && applications.length}</Typography>
 			<Table />
 		</div>
 	);

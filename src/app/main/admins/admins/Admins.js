@@ -11,6 +11,7 @@ import Table from './table';
 function Admins(props) {
 	const dispatch = useDispatch();
 	const user = useSelector(({ auth }) => auth.user);
+	const admins = useSelector(({ adminsReducer }) => adminsReducer.Admins.Admins);
 
 	useEffect(() => {
 		dispatch(Actions.fetchAdmins());
@@ -27,6 +28,9 @@ function Admins(props) {
 				</div>
 				<div className="mr-48">{user && user.role === 'super' ? <CreateAdmin /> : ''}</div>
 			</div>
+			<Typography className="ml-92">
+				Total: {admins && admins.length}
+			</Typography>
 			<Table />
 		</div>
 	);

@@ -3,12 +3,13 @@ import { Icon, Typography } from '@material-ui/core';
 import withReducer from 'app/store/withReducer';
 import { withRouter } from 'react-router-dom';
 import reducer from '../store/reducers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions/index';
 import Table from './table';
 
 function Reviews(prop) {
 	const dispatch = useDispatch();
+	const reviews = useSelector(({ reviewsReducer }) => reviewsReducer.Reviews.Reviews);
 
 	useEffect(() => {
 		dispatch(Actions.fetchReviews());
@@ -22,6 +23,7 @@ function Reviews(prop) {
 					Reviews
 				</Typography>
 			</div>
+			<div className="ml-92">Total: {reviews && reviews.length}</div>
 			<Table />
 		</div>
 	);

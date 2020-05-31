@@ -5,12 +5,13 @@ import withReducer from 'app/store/withReducer';
 import { withRouter } from 'react-router-dom';
 import reducer from '../store/reducers';
 import CreateUser from './Dialogs/CreateUser';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions/index';
 import Inputs from './inputs';
 
 const Users = props => {
 	const dispatch = useDispatch();
+	const users = useSelector(({ usersReducer }) => usersReducer.Users.Users);
 
 	useEffect(() => {
 		dispatch(Actions.fetchUsers());
@@ -30,6 +31,7 @@ const Users = props => {
 				</div>
 			</div>
 			<Inputs />
+			<div className="ml-92">Total: {users && users.length}</div>
 			<Table />
 		</div>
 	);

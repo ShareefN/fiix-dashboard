@@ -35,9 +35,9 @@ const getAttribute = (count, name, color, state) => {
 function Dashboard(props) {
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(Actions.fetchStats());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(Actions.fetchStats());
+	// }, []);
 
 	const stats = useSelector(({ dashboardReducer }) => dashboardReducer.Stats.statistics[0]);
 

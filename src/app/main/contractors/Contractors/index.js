@@ -12,6 +12,7 @@ import Table from './table';
 const Contractors = props => {
 	const dispatch = useDispatch();
 	const user = useSelector(({ auth }) => auth.user);
+	const contractors = useSelector(({ contractorsReducer }) => contractorsReducer.Contractors.Contractors);
 
 	useEffect(() => {
 		dispatch(Actions.fetchContractors());
@@ -29,6 +30,7 @@ const Contractors = props => {
 			</div>
 			<Inputs />
 			<div className="mr-48">{user && user.role === 'super' ? <CreateContractor /> : ''}</div>
+			<div className="ml-92">Total: {contractors && contractors.length}</div>
 			<Table />
 		</div>
 	);

@@ -8,14 +8,14 @@ i18next.addResourceBundle('tr', 'navigation', tr);
 i18next.addResourceBundle('ar', 'navigation', ar);
 
 const navigationConfig = [
-	{
-		id: 'dashboard',
-		title: 'Dashboard',
-		translate: 'DASHBOARD',
-		type: 'item',
-		icon: 'table_chart',
-		url: '/dashboard'
-	},
+	// {
+	// 	id: 'dashboard',
+	// 	title: 'Dashboard',
+	// 	translate: 'DASHBOARD',
+	// 	type: 'item',
+	// 	icon: 'table_chart',
+	// 	url: '/dashboard'
+	// },
 	{
 		id: 'contractors',
 		title: 'Contractors',
